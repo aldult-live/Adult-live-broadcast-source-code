@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <include file="wxshare@head"/>
+		<title>我的</title>
+		<link href='__STATIC__/wxshare/css/my.css' rel="stylesheet" type="text/css" >
+	</head>
+<body>
+	<div class="uinfo">
+		<div class="uavatar"><img src="{$userinfo['avatar']}" /></div>
+		<div class="info">
+			<div class="uname">{$userinfo['user_nickname']}</div>
+			<div class="uicon">
+				<if condition="$userinfo['sex'] eq 2">
+					<img src="__STATIC__/wxshare/images/snv.png" class="level">
+				<else />
+					<img src="__STATIC__/wxshare/images/snan.png" class="level">
+				</if>
+				<img src="{$levellist[$userinfo['level']]['thumb']}" class="level">
+				<img src="{$levelanchorlist[$userinfo['level_anchor']]['thumb']}" class="level">
+			</div>
+			<div class="uid">ID：{$userinfo['id']}</div>
+			<ul class="ufg clear">
+				<li onclick="location.href='{:url('wxshare/user/fans')}'">粉丝 <span>{$userinfo['fansnums']}</span></li>
+				<li class="jiange">|</li>
+				<li onclick="location.href='{:url('wxshare/user/follows')}'">关注 <span>{$userinfo['follownums']}</span></li>
+			</ul>
+		</div>
+		
+		<div class="usave"><a href="{:url('wxshare/user/uedit')}"><img src="__STATIC__/wxshare/images/return_j.png"></a></div>
+	</div>
+	
+	<div class="ucoin clear" >
+		<div class="coin_li" onclick="location.href='{:url('wxshare/payment/index')}'">
+			<div class="cl_tit">充值<span class="cl_tpl">充值奖励</span></div>
+			<div class="cl_con">{$userinfo['coin']} <span>{$configpub['name_coin']}<span></div>
+		</div>
+		<div class="coin_li" style="margin-left: 4%;"  onclick="location.href='{:url('wxshare/profit/index')}'">
+			<div class="cl_tit">我的收益</div>
+			<div class="cl_con">{$userinfo['votes']} <span>{$configpub['name_votes']}<span></div>
+		</div>
+	</div>
+	<div class="tlist">
+		<div class="tit">我的服务</div>
+		<ul class="tlists clear">
+			<li onclick="location.href='{:url('wxshare/auth/index')}'">
+				<div class="icon"><img src="__STATIC__/wxshare/images/user/auth.png" /></div>
+				<div class="tit">我的认证</div>
+				<div class="return_j"><img src="__STATIC__/wxshare/images/return_j.png"></div>
+			</li>
+			<li onclick="location.href='{:url('wxshare/detail/index')}'">
+				<div class="icon"><img src="__STATIC__/wxshare/images/user/detailed.png" /></div>
+				<div class="tit">我的明细</div>
+				<div class="return_j"><img src="__STATIC__/wxshare/images/return_j.png"></div>
+			</li>
+			<li onclick="location.href='{:url('wxshare/level/index')}'">
+				<div class="icon"><img src="__STATIC__/wxshare/images/user/grade.png" /></div>
+				<div class="tit">我的等级</div>
+				<div class="return_j"><img src="__STATIC__/wxshare/images/return_j.png"></div>
+			</li>
+			<if condition="$configpri['service_switch'] eq 1">
+			<li onclick="location.href='{$configpri['service_url']}'">
+				<div class="icon"><img src="__STATIC__/wxshare/images/user/service.png" /></div>
+				<div class="tit">在线客服</div>
+				<div class="return_j"><img src="__STATIC__/wxshare/images/return_j.png"></div>
+			</li>
+			</if>
+			<li style="border-bottom: 0px;" onclick="location.href='{:url('wxshare/user/logout')}'">
+				<div class="icon"><img src="__STATIC__/wxshare/images/user/out.png" /></div>
+				<div class="tit">退出登录</div>
+				<div class="return_j"><img src="__STATIC__/wxshare/images/return_j.png"></div>
+			</li>
+
+		</ul>
+	
+	</div>
+	
+
+	<div style="height:1rem"></div>
+	<div class="footer">
+		<div class="fli" onclick="location.href='{:url('wxshare/Share/index',['ltype'=>1])}'">
+			<div class="icon"><img src="__STATIC__/wxshare/images/index/index1.png"  /></div>
+			<div class="tit ">首页</div>
+		</div>
+		
+		<div class="fli on"  onclick="location.href='{:url('wxshare/user/index')}'">
+			<div class="icon"><img src="__STATIC__/wxshare/images/index/my1.png"  /></div>
+			<div class="tit">我的</div>
+		</div>
+	</div>
+    <include file="wxshare@footer"/>
+ 
+</body>
+</html>

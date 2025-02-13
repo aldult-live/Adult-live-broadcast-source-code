@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <include file="wxshare@head"/>
+    <title>关注</title>
+	<link rel="stylesheet" href="__STATIC__/wxshare/css/lives.css">
+
+</head>
+<body>
+	<!-- 返回 -->
+	<div class="ret">
+		<a class="ricon" href="{:url('wxshare/user/index')}"><img src="__STATIC__/wxshare/images/return_h.png"></a>
+		<div class="tit">关注</div>
+	</div>
+
+	
+	<ul class="suser">
+		<volist name="attention" id="vo">
+		<li>
+			<div class="uavatar"><img src="{$vo['users']['avatar']}"></div>
+			<div class="uinfo">
+				<div class="name">{$vo['users']['user_nickname']}
+				<if condition="$vo['users']['sex'] eq 2">
+					<img src="__STATIC__/wxshare/images/snv.png" class="level">
+				<else />
+					<img src="__STATIC__/wxshare/images/snan.png" class="level">
+				</if>
+				
+				
+				<img src="{$levellist[$vo['users']['level']]['thumb']}" class="level">
+				<img src="{$levelanchorlist[$vo['users']['level_anchor']]['thumb']}" class="level">
+				</div>
+				<div class="msig">{$vo['users']['signature']}</div>
+			</div>
+			<if condition="$vo['isattention'] eq 1">
+				<div class="delfollow" onclick="addfollow({$vo['users']['id']},2)">已关注</div>
+				
+			<else />
+				<div class="addfollow" onclick="addfollow({$vo['users']['id']},1)">关注</div>
+			</if>
+		</li>
+		</volist>
+	</ul>
+	
+
+
+	
+	<include file="wxshare@footer"/>
+	
+	<script> 
+
+	
+		function addfollow(touid,type){
+			var url_post='/wxshare/share/follow_add';
+			if(type==2){
+				url_post='/wxshare/share/follow_dal';
+			}
+			$.ajax({
+				url:url_post,
+				data:{'touid':touid},
+				type:'post',
+				dataType:'json',
+				success:function(data){
+					if(data && data.code ==0){
+						layer.msg(data.msg,{time:3000},function(){
+							location.reload();
+						});
+						
+					}else{
+						layer.msg(data.msg);
+						return !1;
+					}
+							
+				}
+			})
+		}
+		
+		
+	</script>	
+
+
+</body>
+</html> 

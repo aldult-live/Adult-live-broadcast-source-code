@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <include file="wxshare@head"/>
+    <title>{$configpub['site_name']}</title>
+	<link rel="stylesheet" href="__STATIC__/wxshare/css/lives.css">
+
+</head>
+<body>
+	<!-- 返回 -->
+	<div class="ret">
+		<a class="ricon" href="{:url('wxshare/share/index')}"><img src="__STATIC__/wxshare/images/return_h.png"></a>
+		<div class="tit">搜索</div>
+	</div>
+
+
+	<div class="search_top">
+		<div class="sinfo"><img src="__STATIC__/wxshare/images/index/sousuo.png"><input  type="text" name="keyword" placeholder="请输入您要搜索的昵称或ID" /></div>
+		<div class="stit" >搜索</div>
+	</div>
+	
+	<div class="stype">
+		<ul class="s_type_ul clear">
+			<li class="on" data-type="suser">用户<span></span></li>
+			<li data-type="live_ls">直播<span></span></li>
+		</ul>
+
+	</div>
+	
+	<ul class="suser">
+		
+	</ul>
+	
+	<ul class="live_ls clear hide">
+
+	</ul>
+
+	
+	<include file="wxshare@footer"/>
+	
+	<script> 
+		var levellist={$levellistj};
+		var levelanchorlist={$levelanchorlistj};
+		
+		$(".s_type_ul>li").on('click',function(){
+			$('.s_type_ul>li').removeClass('on');
+			$(this).addClass('on');
+			var type= $(this).data('type');
+			if(type=='live_ls'){
+				$('.suser').hide();
+			}else{
+				$('.live_ls').hide();
+			}
+			$('.'+type).show();
+		});
+		
+		//搜索
+		$(".search_top>.stit").on('click',function(){
+			$(".suser").html('');
+			$(".live_ls").html('');
+			var keyword=$("input[name=keyword]").val();
+			if(keyword==''){
+				
+				layer.msg('请输入搜索内容');
+				return 0;
+			}
+			$.ajax({
+				url: '/wxshare/share/search_post',
+				data: {keyword:keyword},
+				type: "POST",
+				dataType: "json",
+				cache: !1,
+				success:function(data){
+	
+					if(data.ulist_nums>0){
+						
+						var nums=data.ulist_nums;
+						var list=data.ulist;
+						var html='';
+						for(var i=0;i<nums;i++){
+
+							var linfo=list[i];
+
+							html+='<li>\
+									<div class="uavatar"><img src="'+linfo['avatar']+'"></div>\
+									<div class="uinfo">\
+										<div class="name">'+linfo['user_nickname'];
+										if(linfo['sex']==2){
+											html+='<img src="__STATIC__/wxshare/images/snv.png" class="level">';
+										}else{
+											html+='<img src="__STATIC__/wxshare/images/snan.png" class="level">';
+										}
+										
+										
+										html+='<img src="'+levellist[linfo['level']]['thumb']+'" class="level">\
+										<img src="'+levelanchorlist[linfo['level_anchor']]['thumb']+'" class="level">\
+										</div>\
+										<div class="msig">'+linfo['signature']+'</div>\
+									</div>';
+									if(!linfo['isattention']){
+										html+='<div class="addfollow" onclick="addfollow('+linfo['id']+',1)">关注</div>';
+									}else{
+										html+='<div class="delfollow" onclick="addfollow('+linfo['id']+',2)">已关注</div>';
+									}
+								html+='</li>';
+						}
+					
+						$(".suser").append(html);
+					}
+				
+					if(data.lives_nums>0){
+							
+							var nums=data.lives_nums;
+							var list=data.lives;
+							var html2='';
+							for(var i=0;i<nums;i++){
+								var linfo=list[i];
+
+								html2+='<li class="lists" onclick="checklive('+linfo['uid']+')">\
+										<img src="'+linfo['thumb']+'"  class="icon-big" />\
+										<div class="h-info">\
+											<div class="rom_icon"><img src="__STATIC__/wxshare/images/index/liverom_'+linfo['type']+'.png" /></div>\
+											<ul class="u_info">\
+												<li><img src="'+linfo['avatar_thumb']+'"  class="uavatar" /></li>\
+												<li class="fans">'+linfo['user_nickname']+'</li>\
+												<li class="live-icon"><img src="__STATIC__/wxshare/images/index/rs.png"  /></li>\
+												<li class="fans_rs">'+linfo['nums']+'</li>\
+											</ul>\
+										</div>\
+									</li>';
+							}
+						
+						$(".live_ls").append(html2);
+					}
+				}
+			})
+		});
+	
+		function addfollow(touid,type){
+			
+			var url_post='/wxshare/share/follow_add';
+			if(type==2){
+				url_post='/wxshare/share/follow_dal';
+			}
+		
+			$.ajax({
+				url:url_post,
+				data:{'touid':touid},
+				type:'post',
+				dataType:'json',
+				success:function(data){
+					if(data && data.code ==0){
+						layer.msg(data.msg,{time:3000},function(){
+							$(".search_top>.stit").click();
+						});
+						
+					}else{
+						layer.msg(data.msg);
+						return !1;
+					}
+							
+				}
+			})
+		}
+		
+		
+		function checklive(uid){
+			location.href='/wxshare/share/show.html?roomnum='+uid;
+		}
+
+	</script>	
+
+
+</body>
+</html> 

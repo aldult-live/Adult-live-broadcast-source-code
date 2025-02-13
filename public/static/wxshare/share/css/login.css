@@ -1,0 +1,305 @@
+
+body {
+	background:#fff;
+}
+
+/* login */
+.logbg{
+	position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../images/login/logbg.png) no-repeat;
+    background-size: 100%;
+}
+
+
+.home .top_code{
+    position:absolute;
+    margin:-55px auto 30px;
+    padding:5px 0 10px 0;
+    width:92%;
+    left: 4%;
+    bottom: 3.5rem;
+    border-radius:0.2rem;
+    text-align:center;
+    background:#fff;
+    -webkit-box-shadow:0 0 0.2rem 0 rgba(56,31,12,0.1);  
+    -moz-box-shadow:0 0 0.2rem 0 rgba(56,31,12,0.1);  
+    box-shadow:0 0 0.2rem 0 rgba(56,31,12,0.1);  
+}
+.home .top_set{
+	width: 92%;
+	position: absolute;
+	bottom: 1.7rem;
+	left: 4%;
+	border-radius: 0.2rem;
+	background: #FFF;
+}
+.home .top_set .top{
+    padding:0 0.4rem;
+}
+.home .top_set .top .myagent{
+	position:relative;
+	height:1rem;
+	line-height:1rem;
+    font-size:0.3rem;
+
+}
+.home .li_l img{
+   	width: 0.7rem;
+   	height: 0.7rem; 
+   	margin-right: 0.3rem;
+}
+.home .top .myagent .li_r{
+    float:right;
+    font-weight:bold;
+}
+.home .top .myagent .agent_add .li_r{
+    font-weight:normal;
+}
+.home .list{
+    padding:0 0.4rem;
+}
+.home .list ul{}
+.home .list ul li{
+    padding-right:0.6rem;
+    height:1rem;
+    line-height:1rem;
+    border-top:0.02rem solid #f5f5f5;
+    background:url("../images/right.png") no-repeat center right;
+    background-size:0.28rem;
+    font-size:0.3rem;
+}
+.home .list ul li a{
+    display:block;
+}
+.home .list ul li .li_l{
+
+    
+}
+.home .list ul li .li_r{
+    float:right;
+    color:#ffdd00;
+    font-weight:bold;
+}
+
+.home .mycode_title{
+	line-height:0.6rem;
+	font-size:0.3rem;
+    font-weight:bold;
+}
+.home .mycode{
+	line-height:1rem;
+	font-size:0.32rem;
+    font-weight:bold;
+}
+.home .mycode .code{}
+.home .mycode .code i{
+	display:inline-block;
+	width:0.6rem;
+	height:0.6rem;
+	text-align:center;
+	line-height:0.6rem;
+	border:1px solid #a0a0a0;
+	font-style: normal;	
+	margin:0 0.04rem;
+}
+.home .mycode .copy{
+	color:#ff5878;
+    font-weight:normal;
+    line-height:0.5rem;
+    width: 36%;
+    margin: 0.2rem auto;
+    height: 0.5rem;
+    border: 1px solid #ff5878;
+    border-radius: 0.5rem;
+    font-size: 0.3rem;
+
+}
+
+.home .tips{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: #FFF;
+	padding:0.2rem 0.4rem;
+    font-size:0.24rem;
+	line-height:0.4rem;
+}
+
+/* 下级分成 */
+.profit{
+    background:#fff;
+}
+.profit ul{
+	padding-left:0.2rem;
+}
+.profit ul li{
+	position:relative;
+	padding:0.2rem 0 0.2rem  1.2rem;
+	height:1.2rem;
+	border-bottom: 1px solid #efefef;
+}
+.profit ul li .thumb{
+	position:absolute;
+	top:0.2rem;
+	left:0;
+	width:1rem;
+	height:1rem;
+	border-radius:50%;
+}
+.profit ul li .info{
+	width:60%;
+	line-height:0.6rem;
+}
+.profit ul li .info .name{
+	color:#040404;
+	font-size:0.32rem;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.profit ul li .info .id{
+	color:#aaaaaa;
+}
+.profit ul li .info2{
+	position:absolute;
+	top:0.2rem;
+	right:0.2rem;
+	width:2rem;
+	height:1.2rem;
+	line-height:0.6rem;
+}
+.profit ul li .info2 .icon{
+	text-align:center;
+}
+.profit ul li .coin{
+	text-align:center;
+}
+
+/* 设置邀请码 */
+.setcode{}
+.setcode .top{
+	height:4rem;
+	background:url("../images/agent/top_set.png") no-repeat center;
+	background-size:auto 4rem;
+}
+.setcode{}
+.setcode{}
+.setcode{}
+.setcode .mycode{
+	color:#000;
+	line-height:1rem;
+	padding:0 0.2rem;
+	font-size:0.32rem;
+	text-align:center;
+}
+.setcode .mycode .code{
+	position:relative;
+	display:inline-block;
+}
+.setcode .mycode .code i{
+	display:inline-block;
+	width:0.6rem;
+	height:0.6rem;
+	text-align:center;
+	line-height:0.6rem;
+	color:#ff2d8e;
+	border:1px solid #bababa;
+	font-style: normal;	
+	margin:0 0.04rem;
+}
+.setcode .mycode .code input{
+	position:absolute;
+	top:0;
+	left:0;
+	width:auto;
+	height:auto;
+	opacity: 0;
+	z-index:-1;
+	/*-webkit-touch-callout:none;
+	-webkit-user-select:none;*/
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+}
+.setcode .mycode .copy i{
+	display:inline-block;
+	width:0.4rem;
+	height:0.4rem;
+	background:url("../images/agent/copy.png") no-repeat center;
+	background-size:0.4rem;
+	vertical-align: middle;
+    margin-top: -0.06rem;
+	margin-right:0.06rem;
+}
+.setcode .tips{
+	padding:0.2rem;
+	color:#9a9a9a;
+	line-height:0.6rem;
+}
+.setcode .submit{
+	width:60%;
+	height:0.8rem;
+	line-height:0.8rem;
+	text-align:center;
+	color:#fff;
+	font-size:0.32rem;
+	margin:0.4rem auto 0;
+	border-radius:0.4rem;
+}
+
+/*下载页*/
+.downapp_bg{
+	width: ;
+	background: url(../images/agent/downapp_bg.png) no-repeat center center fixed;
+	background-size: cover;
+}
+.downapp_logo{
+	margin: 0 auto;
+	width: 1.3rem;
+	height: 1.3rem;
+	margin-top:1.5rem;
+}
+.downapp_logo img{
+	width: 100%;
+	height: 100%;
+}
+.downapp_name{
+	width: 100%;
+	text-align: center;
+	color: #FFF;
+	font-size: 0.4rem;
+	margin-top: 0.4rem;
+}
+.downapp_desc{
+	width: 100%;
+	text-align: center;
+	margin-top: 0.5rem;
+
+}
+.downapp_desc img{
+	width: 90%;
+	height: auto;
+	max-width: 535px;
+	max-height: 228px;
+}
+
+.downapp_btn{
+	position: fixed;
+	left: 20%;
+	bottom: 3rem;
+	width: 60%;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	margin: 0 auto;
+	background: #FFF;
+	color: #ff854c;
+	border-radius: 0.5rem;
+	text-align: center;
+	font-size: 0.35rem;
+}

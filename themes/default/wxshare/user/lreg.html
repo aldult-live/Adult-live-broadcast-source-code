@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <include file="wxshare@head"/>
+		<title>注册</title>
+		<link href='__STATIC__/wxshare/css/login.css' rel="stylesheet" type="text/css" >
+	</head>
+<body>
+	<div class="ret">
+		<a class="ricon" href="{:url('wxshare/user/login')}"><img src="__STATIC__/wxshare/images/return_h.png"></a>
+		<div class="tit">注册</div>
+	</div>
+	
+	<ul class="rinp">
+		<li>
+			<img src="__STATIC__/wxshare/images/login/phone.png" />
+			<select id="code">
+				<volist name="countrys" id="vo">
+				<option value="{$vo.tel}">+{$vo.tel}</option>
+				</volist>
+			</select>
+			<input  type="text" name="mobile" placeholder="请输入您的手机号" />
+		</li>
+		<li>
+			<img src="__STATIC__/wxshare/images/login/code.png" />
+			<input  type="text" name='mcode' placeholder="请输入验证码" />
+			<div class="codeget"  onclick="sendemail(1)" id="codeget">获取验证码</div>
+	
+		</li>
+		<li>
+			<img src="__STATIC__/wxshare/images/login/pwd.png" />
+			<input  type="password" name="pws" placeholder="请输入填写密码" />
+		</li>
+		<li>
+			<img src="__STATIC__/wxshare/images/login/pwd.png" />
+			<input  type="password" name="pwds" placeholder="请输入确认密码" />
+		</li>
+	
+	</ul>
+	<div class="code_msg">*短信验证保障账户安全的同时短信费用将由平台支付</div>
+	
+	<div class="rinpgo" id="userreg">注册并登录</div>
+	
+
+    <include file="wxshare@footer"/>
+	<script src="__STATIC__/wxshare/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<include file="public@head"/>
+<title>{$site_name}</title>
+</head>
+<body style="background-color:#f3f3f3">
+<include file="public@header"/>
+<include file="personal:header"/>
+<div class="buyvip" id="buyvip"></div>
+<div class="dds-dialog-bg" id="ds-dialog-bg"></div>
+<div class="container">
+  <div class="Firstfloor clearfix">
+		<div class="Leftlayout">
+			<include file="personal:navigation"/>
+		</div>
+		<div class="rightlayout">
+			<div class="schedule">
+				<h3 class="personal_h3"><i class="h3_two"></i>我的黑名单</h3>
+				<div class="fldiv">
+					<ul>
+						<volist name="attention" id="v">
+							<li>
+								<div class="info">
+								<a class="user-pic" href="/{$v['users']['id']}" target="_blank" title="{$v['users']['user_nickname']}">
+									<img src="{$v['users']['avatar']}" title="{$v['users']['user_nickname']}" alt="{$v['users']['id']}">
+								</a>
+								<p class="user-name">
+									<img src="{$levellist[$v['users']['level']]['thumb']}" class="level">
+									<a title="{$v['users']['user_nickname']}" target="_blank" href="/{$v['users']['id']}">
+										{$v['users']['user_nickname']}
+									</a>
+								</p>
+								<p class="count">
+									关注{$v['follow']} | 粉丝{$v['fans']}
+								</P>
+								</div>
+								<div class="status">
+						       <a onclick="Personal.played({$v['touid']})">观看直播</a>
+								</div>
+								<a class="cancel" followID="{$v['touid']}" onclick="Personal.list_del({$v['touid']})">移除</a>
+							</li>
+					  </volist>
+					</ul>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
+<include file="public@footer"/>
+<include file="personal:footer"/>
+</body>
+</html>

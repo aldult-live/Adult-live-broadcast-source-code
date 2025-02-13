@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <include file="wxshare@head"/>
+		<title>我的</title>
+		<link href='__STATIC__/wxshare/css/my.css' rel="stylesheet" type="text/css" >
+	</head>
+<body>
+	<div class="ret">
+		<a class="ricon" href="{:url('wxshare/user/index')}"><img src="__STATIC__/wxshare/images/return_h.png"></a>
+		<div class="tit">编辑资料</div>
+		<div class="sub" onclick="subsave()">保存</div>
+	</div>
+	
+	<ul class="ulists clear">
+		<li>
+			<div class="tit">头像</div>
+			<div class="avatar"  data-fileid="up_avatar"><img src="{$userinfo['avatar']}"><input type="file" id="up_avatar" class="file_input" name="file"  accept="image/*" style="display:none;"/></div>
+			<div class="return_j"><img src="__STATIC__/wxshare/images/return_j.png"></div>
+			<input  type="hidden" name="avatar" value="{$userinfo['avatar_t']}" />
+			
+		</li>
+		<li>
+			<div class="tit">昵称</div>
+			<div class="uname"><input name="user_nickname" value="{$userinfo['user_nickname']}" /></div>
+			
+			<div class="return_j"><img src="__STATIC__/wxshare/images/return_j.png"></div>
+		</li>
+		<li>
+			<div class="tit">性别</div>
+			<select  id="sex">
+				<option  value="1" <if condition="$userinfo['sex'] eq 1"> selected</if>>男</option>
+				<option  value="2" <if condition="$userinfo['sex'] eq 2"> selected</if>>女</option>
+			</select>
+			<div class="return_j"><img src="__STATIC__/wxshare/images/return_j.png"></div>
+		</li>
+		<li>
+			<div class="tit">生日</div>
+			<div class="uname"><input class="js-date" id="birthday" name="birthday" value="{$userinfo['birthday']}" aria-invalid="false"  /></div>
+			<div class="return_j"><img src="__STATIC__/wxshare/images/return_j.png"></div>
+		</li>
+		<li>
+			<div class="tit">签名</div>
+			<div class="uname" style="width:5rem"><input  name="signature" value="{$userinfo['signature']}" /></div>
+			<div class="return_j"><img src="__STATIC__/wxshare/images/return_j.png"></div>
+		</li>
+
+
+	</ul>
+
+    <include file="wxshare@footer"/>
+	<script type="text/javascript" src="__STATIC__/js/ajaxfileupload.js"></script>
+
+	<script type="text/javascript">
+		//全局变量
+		var GV = {
+			ROOT: "__ROOT__/",
+			WEB_ROOT: "__WEB_ROOT__/",
+			JS_ROOT: "static/js/"
+
+		};
+		
+		var protocol="{$protocol}";
+		var domain="{$domain}";
+		var upload_url="{$upload_url}";
+
+		var qiniu_expedite_url=protocol+'://'+domain+'/';
+		var qiniu_upload_url=protocol+'://'+upload_url+'/';
+	</script>
+	<script src="__STATIC__/js/wind.js"></script>
+	<script>
+	(function(){
+		//日期选择器
+		var dateInput = $("input.js-date");
+		if (dateInput.length) {
+			Wind.use('datePicker', function () {
+				dateInput.datePicker();
+			});
+		}
+		
+		
+		
+		
+		
+		
+	})()
+	
+	function subsave(){
+		var nickName=$("input[name=user_nickname]").val();
+		var signature=$("input[name=signature]").val();
+		var birthday=$("input[name=birthday]").val();
+		var avatar=$("input[name=avatar]").val();
+		var sex=$("#sex").find("option:selected").val()
+		
+		if(signature.length>20){
+			layer.msg("签名字数最多20个字");
+			return;
+		}
+
+		if(nickName.length>8){
+			layer.msg("昵称最多8个字符");
+			return;
+		}
+		
+		$.ajax({
+			url: '/wxshare/user/ueditpost',
+			data: {nickname:nickName,signature:signature,birthday:birthday,avatar:avatar,sex:sex},
+			type: "POST",
+			dataType: "json",
+			cache: !1,
+			success:function(data){
+				
+				if(data && data.code ==0){
+					layer.msg(data.msg,{time:3000},function(){
+						location.href='/wxshare/user/uedit';
+					});
+					
+				}else{
+					layer.msg(data.msg);
+					return !1;
+				}
+				
+				
+			}
+		})
+	}
+		
+	
+	
+	//上传头像
+	
+	var upload_this;
+    $(".avatar img").click(function(){
+
+        upload_this=$(this).parent();
+        upload();
+    })
+
+    function upload() {
+		
+		
+		var iptt=$('.file_input',upload_this)[0];
+		console.log(iptt);
+		//var iptt=document.getElementById(index);
+		if(window.addEventListener) { // Mozilla, Netscape, Firefox
+			iptt.removeEventListener('change',ajaxFileUpload,false);
+			iptt.addEventListener('change',ajaxFileUpload,false);
+		}else{
+			iptt.detachEvent('onchange',ajaxFileUpload);
+			iptt.attachEvent('onchange',ajaxFileUpload);
+		}
+		iptt.click();
+    }
+	
+	function ajaxFileUpload() {
+		var _this=upload_this;
+		var iptt=$('.file_input',_this);
+		if(iptt.val()==''){
+			return !1;
+		}
+		var id=_this.data('fileid');
+	
+			
+		$.ajax({url: "/appapi/auth/getuploadtoken", success: function(res){
+		
+			res=JSON.parse(res);;
+			console.log(res.token);
+			var token = res.token;
+			var domain = res.domain;
+			var name = 'auth_'+ new Date().getTime()+'.jpg';
+			var imgurl = qiniu_expedite_url+name; //加速域名模板上定义
+
+			
+			$.ajaxFileUpload({
+				url: qiniu_upload_url, //模板上定义
+				secureuri: false,
+				type:'POST',
+				fileElementId: id,
+				data: { 'x:name':name,fname:name,key:name,token:token },
+				dataType: 'json',
+				success: function(data,status,xhr) {
+					//七牛不返回ajaxFileUpload可使用的错误提示，只能自行访问图片尝试
+					if(status=='success'){
+						layer.msg("上传成功，请点击保存按钮");
+						$("img",_this).attr("src",imgurl);
+						$("input[name=avatar]").attr("value",name);
+						shadd.hide();
+					}else{
+						layer.msg("上传失败");
+						shadd.hide();
+					}
+				}
+				
+			})
+		
+		}});
+    }    
+
+	</script>
+ 
+</body>
+</html>

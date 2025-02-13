@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <include file="wxshare@head"/>
+		<title><if condition="$configpub['site_seo_title'] neq ''">
+        {$configpub['site_seo_title']|default=''}
+        <else />
+        {$configpub['site_name']|default=''}
+        </if>-登录</title>
+		<link href='__STATIC__/wxshare/css/login.css?t=2' rel="stylesheet" type="text/css" >
+	</head>
+<body class="logbg">
+	<div class="l_top">
+		<div class="logo"><img src="/logo_h5.png"></div>
+		<div class="tit">{$configpub['site_name']|default=''}</div>
+	</div>
+	
+	<div class="l_user">
+		<div class="u_inp">
+			<select id="code">
+				<volist name="countrys" id="vo">
+				<option value="{$vo.tel}">+{$vo.tel}</option>
+				</volist>
+			</select>
+			<input class="mobile" type="text" name="mobile" placeholder="请输入您的手机号" />
+		</div>
+		<div class="u_inp">
+			<input class="pws" type="password" name="pws" placeholder="请输入密码" />
+		</div>
+		
+		<div class="lgo" id="userlogin">立即登录</div>
+		
+		<div class="reg_w">
+			<a class="reg" href="{:url('wxshare/user/lreg')}">立即注册</a>
+			<a class="w" href="{:url('wxshare/user/lwreg')}">忘记密码</a>
+		</div>
+	</div>
+	
+	<div class="l_bot">
+		<div class="lmode">
+			<div class='line'></div>
+			<div class='tit'>其他登录方式</div>
+			<div class='line'></div>
+		</div>
+		<div class="l_tripartite">
+			<if condition="in_array('qq',$configpub['login_type'])">
+			<a href="{:url('/home/User/qq')}"><img src="__STATIC__/wxshare/images/login/qq.png" /></a>
+			</if>
+			
+			<if condition="in_array('wx',$configpub['login_type'])">
+			<a href="{:url('wxshare/user/wxLogin')}"><img src="__STATIC__/wxshare/images/login/wx.png" /></a>
+			</if>
+		</div>
+	</div>
+	<div class="agreement">已详细阅读并同意<a href="{$configpub['login_private_url']}&ish5=1">{$configpub['login_private_title']}</a>和<a href="{$configpub['login_service_url']}&ish5=1">{$configpub['login_service_title']}</a></div>
+	
+    <include file="wxshare@footer"/>
+   <script src="__STATIC__/wxshare/js/login.js"></script>
+</body>
+</html>

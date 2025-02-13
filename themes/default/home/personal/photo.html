@@ -1,0 +1,54 @@
+<include file="public@head"/>
+<title>{$site_name}</title>
+</head>
+<body style="background-color:#f3f3f3">
+<include file="public@header"/>
+<include file="personal:header"/>
+<div class="container">
+  <div class="Firstfloor clearfix">
+		<div class="Leftlayout">
+            <include file="personal:navigation"/>
+		</div>
+		<div class="rightlayout">
+			<div class="jiben">
+				<h3>修改头像</h3>
+			</div>
+			<div>
+				<div class="form-horizontal js-ajax-forms" > 
+					<fieldset>
+						<div class="control-group">
+							<div class="flashupload_div">
+								<a onclick="uploadOneImage('图片上传','#thumbnail');" class="flashupload">上传头像</a>
+								<a class="support">(仅支持jpg、jpeg、gif、png)</a>
+							</div>
+							<div class="photo">
+								<div>
+									<input type="hidden" name="avatar" id="thumbnail" value="{$info['avatar_s']}">
+									<a href="javascript:void(0);" >
+										<if condition="$info['avatar'] neq ''">
+											<div class="photozuo">
+												<img src="{$info['avatar']}" id="thumbnail-preview" class="thumb_preview" style="max-width:100%;max-height:100%;"/>
+											</div>	
+										<else/>
+										  <img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumbnail-preview" width="135"/>
+										</if>
+									</a>
+								</div>
+								<span class="form-required"></span>
+							</div>
+						</div>
+					</fieldset>
+					<div class="photo-actions">
+						<a  class="photo_baochun" onclick="Personal.photo()">保存</a>
+						<a  class="photo_baochun" onclick="$('#thumbnail-preview').attr('src','/default.jpg');$('#thumbnail').val('/default.jpg');return false;">取消</a>
+					</div>
+				</div>
+			</div> 
+		</div>
+	</div>
+</div>
+<include file="public@footer"/>
+<include file="personal:footer"/>
+<script type="text/javascript" src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, post-check=0, pre-check=0">
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="referrer" content="origin">
+		<meta name="renderer" content="webkit">
+		<link rel="Short Icon" href="/favicon.ico"/>
+		<title>{$anchorinfo.user_nickname}的直播频道-{$site_name}</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/home/css/login.css"/>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/home/show/css/show.css?t=1617781695"/>
+	</head>
+	<body>
+		<div class="selectPlay" id="selectPlay"></div>
+		<div class="dds-dialog-bg" id="ds-dialog-bg"></div>
+		<div class="SR-pager" id="LF-pager">
+			<div class="SR-nav" id="LF-nav">
+				<!--左侧导航-->
+				<div class="nav-fg">
+					<h1>
+						<a href="/" target="_blank">
+							<img src="/logo.png" alt="{$configpub['site_name']}"/>
+						</a>
+					</h1>
+					<ul class="nav" id="LF-nav-fg">
+						<li class="user" id="LF-user">
+							<div class="MR-user">
+								<if condition="$user">
+								<div class="login">
+									<div class="photoer" id="M-user-name-hook">
+										<a href="/home/Personal/index" target="_blank"><img src="{$user.avatar}" /></a>
+										
+									</div>
+									<div class="money">
+										<label><i class="ICON-coins"></i>{$configpub['name_coin']}</label>
+										<cite title="{$user.coin}{$configpub['name_coin']}">{$user.coin}</cite>
+									</div>
+									<a href="/home/Payment/index" class="recharge" target="_blank">充值</a>
+								</div>									
+								<else/>
+								<div class="hd-login">
+                                    <div class="no-login">
+                                        <a href="javascript:void(0);" class="login" id="LF_login">登录</a>
+                                        <a href="javascript:void(0);" class="reg" id="LF_reg">注册</a>
+                                    </div>
+								</div>
+								</if>
+							</div>								
+						</li>
+						<li>
+								<a href="/" class="linked" target="_blank">首页</a>
+						</li>
+					</ul>
+				</div>
+				
+				<!--左侧底部导航-->
+				<div class="nav-link " id="LF-nav-link">
+					<ul>
+							<li class="share">
+									<div class="icon">
+                                        <dl>
+                                            <dt><i class="ICON-nav-share"></i></dt>
+                                            <dd>
+                                                <span class="desc"><if condition="$isplay">分享<else/>打开</if></span>
+                                            </dd>
+                                        </dl>
+									</div>
+									<div class="info" id="LF-share">
+										<div class="MR-share">
+											<div class="M-bubble">
+												<div class="arrow-left"></div>
+												<div class="detail">
+													<a class="weibo" href="javascript:void(0)"  title="可在微博中打开" target="_blank" data-target="weibo"><i class="ICON-weibo"></i><label>微博</label></a>
+													<a class="qq" href="javascript:void(0)"  title="可在QQ中打开" target="_blank" data-target="qq"><i class="ICON-qq"></i><label>QQ</label></a>
+													<div class="qr">
+														<img src="/home/show/qrcode?roomid={$anchorinfo['id']}">
+													<!-- 	<img src="{$configpub['qr_url']}"> -->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+							</li>
+							<li class="app">
+								<a href="{$configpub['app_android']}" target="_blank">
+									<div class="icon">
+											<dl>
+													<dt><i class="ICON-nav-app"></i></dt>
+													<dd><span class="desc">APK下载</span></dd>
+											</dl>
+									</div>
+									<div class="info">
+											<div class="app-ma"></div>
+									</div>
+								</a>	
+							</li>
+							<li class="app">
+								<a href="{$configpub['app_ios']}" target="_blank">
+									<div class="icon">
+											<dl>
+													<dt><i class="ICON-nav-app"></i></dt>
+													<dd><span class="desc">IOS下载</span></dd>
+											</dl>
+									</div>
+									<div class="info">
+											<div class="app-ma"></div>
+									</div>
+								</a>	
+							</li>
+							<li class="help">
+									<a href="javascript:void(0);" target="_blank">
+											<i class="ICON-nav-help"></i>
+											<span class="desc">帮助</span>
+									</a>
+							</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 主体区域 -->
+			<div class="SR-stager clearfix" id="LF-stager">
+				
+				<!-- 信息通知 -->
+				<div class="SR-area-chat" id="LF-area-chat">
+					<ul class="SR-area-Tab">
+						<li class="on" style="width: 60px;">送礼榜</li>
+						<li>本场贡献榜</li>
+						<li>全站贡献榜</li>
+						<li style="width: 120px;">在线用户(<cite>0</cite>)</li>
+						<div class="clearboth"></div>
+					</ul>
+
+					<div class="chat-msg" id="LF-chat-msg">
+						<div class="MR-msg-list">
+
+							<!-- 礼物记录 -->
+							<div class="MR-msg tab-con">
+								<div class="msg-gift player-main" id="msg_gift">
+									<div class="MR-chat">
+										<div class="boarder">
+											<ul class="clearfix">
+												
+											</ul>
+										</div>
+									<!-- 	<div class="scroller"></div> -->
+									</div>
+									<!-- <div class="hjPopbox"> 
+									</div> --> 
+								</div>
+							</div>
+							<!-- 本场贡献榜 -->
+							<div class="MR-rank now_Rank tab-con">
+
+							</div>
+							<!-- 全站贡献榜 -->
+							<div class="MR-rank total_Rank tab-con">
+								
+							</div>
+
+							<!--用户列表-->
+							<div class="nav-bg tab-con" id="LF-nav-bg">
+								<div class="nav-panel hide" id="LF-panel-news"></div>
+								<div class="nav-panel hide" id="LF-panel-square"></div>
+								<div class="nav-panel" id="LF-panel-online">
+									<div class="MR-online">
+										<div class="dialog">
+											<!-- <ul class="nav-tab">
+												<li class="end user on">在线用户(<cite>{$liveinfo.nums|default=0}</cite>)</li>
+												<li class="admin">社团管理员(<cite>0</cite>)</li>
+											</ul> -->
+											<div class="nav-con" id="nav_con">
+												<div class="user-con">
+													<div class="MR-chat">
+														<div class="boarder">
+															<ul class="clearfix">
+															
+															</ul>
+														</div>
+														<div class="scroller"></div>
+													</div>
+													<!-- <div class="more-toggle"></div> -->
+												</div>
+												<!-- <div class="admin-con" style="display: none;">
+													<div class="MR-chat">
+														<div class="boarder">
+															<ul class="clearfix">
+																
+															</ul>
+														</div>
+														<div class="scroller"></div>
+													</div>
+												</div> -->
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+
+						</div>
+
+						<!-- 聊天记录 -->
+						<div id="LF-chat-msg-area" class="MR-msg">
+							<div class="msg-chat">
+								<div class="MR-chat">
+									<div class="boarder">
+										<ul class="clearfix">
+											<!-- <li><span class="fake-name">管理小助手：</span>亲，想知道播客最新消息么？请“关注”Ta。</li> -->
+										</ul>
+									</div>
+									<!-- <div class="scroller"></div> -->
+									<span class="ICON-lock-screen hide"></span>
+								</div>
+							</div>
+							<div class="MR-msg-notice clearfix hide">
+								<span class="title">弹幕</span>
+								<div class="msg-content"></div>
+							</div>
+						</div>
+						<div class="control-bar">
+							<cite></cite>
+							<span></span>
+						</div>
+						<div id="MR-brand"></div>
+					</div>
+
+
+					<div class="chat-talk" id="LF-chat-talk">
+						<!-- 聊天发送 -->
+						<div class="MR-talk">
+							<span class="send-btn">发送</span>
+							<div class="speaker">
+								<input type="text" value="和大家聊会儿天？" />
+								<cite>30</cite>
+							</div>
+							<div class="emoticon-toggle-panel">
+								<!-- <a href="javascript:void(0);" class="BTN-face-toggle"></a> -->
+							</div>
+						</div>
+						<!-- 喇叭 -->
+						<div class="MR-horn">
+							<div class="toggle"></div>
+							<div class="selector M-bubble hide">
+								<div class="arrow-right"></div>
+								<span class="closed"></span>
+								<div class="detail">
+									<div class="btn gold hide" data-gid="" data-num="0">
+										<p class="name">金喇叭<span class="num"></span></p>
+										<p class="price"><i class="ICON-coins">200</i></p>
+									</div>
+									<div class="btn site" data-gid="" data-num="0">
+										<p class="name">弹幕<span class="num"></span></p>
+										<p class="price"><i class="ICON-coins">{$configpri['barrage_fee']}</i></p>
+									</div>
+								</div>
+							</div>
+							<div class="dialog hide">
+								<h4 class="gold"><i></i></h4>
+								<div class="detail">
+									<textarea maxlength='10'>请输入...</textarea>
+									<div class="opt clearfix">
+										<span></span>
+										<span class="num" style="display: none;">，本次免费</span>
+										<input type="button" value="发送" class="horn-send" />
+									</div>
+									<span class="closed"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- 头条 -->
+					<div class="MR-big-gift">
+						<div class="out-boxer" style="opacity: 1; top: 0px;">
+							<div class="high-boxer" style="margin-left: -149.5px;">
+								<a href="/" target="_blank">
+									<cite class="photoer"><img src="" /></cite>
+									<cite class="desc">
+										<span class="user" title="">1</span>
+										<span class="txt">送给</span>
+										<span class="name" title="">2</span>3
+									</cite>
+									<span class="gift-pic"><img src="" /></span>
+									<cite class="desc gift-num">x1</cite>
+								</a>
+							</div>
+						</div>
+					</div>					
+				</div>
+
+				<!-- 直播 -->
+				<div class="SR-area-video" id="LF-area-video">
+					<!-- 直播 -->
+					<if condition="$isplay">
+						<div class="channel-player-v2" chromeq="1" id="container">
+	                        <div class="player" id="shadow_webplayer">
+	                            <div class="startroom_text" style="cursor:default;">
+	                                <p class="">温馨提示：</p>
+	                                <p class="">OBS或其他第三方直播软件进行直播，推流成功后点击开始直播</p>
+	                                <p class="">FMSURL(推流地址)：
+	                                    <button class="copystream" data-clipboard-text="{$push['cdn']}"  data-clipboard-action="copy" >点击复制</button></p>
+	                                <p style="color:#5c5959;">{$push['cdn']}</p>
+	                                <p style="word-break: break-word;">Flow mark(流名)：<button class="copystream1" data-clipboard-text="{$push['stream']}"  data-clipboard-action="copy">点击复制</button></p>
+	                                <p style="word-break: break-word;color:#5c5959;" >{$push['stream']}</p>
+	                            </div>
+	                            <p class="startroom_icon" onclick="liveType.Choice()">开始直播</p>
+	                        </div> 
+						</div>
+	                    <div class="channel-player-v2" chromeq="1" id="container_play" style="display:none" >
+	                        <div id="playerzmblbkjP" style="width:100%;height:100%;z-index:1;"></div>
+	                    </div>
+					<else/>
+						<div class="channel-player-v2" chromeq="1">
+	                        <div id="playerzmblbkjP" style="width:100%;height:100%;"></div>
+							
+						</div>
+					</if>
+
+					<div class="gift_effect_area">
+						<div class="hjPopbox"> 
+						</div>
+					</div>
+					<!-- 主播信息 -->
+					<div class="MR-about">
+						<dl class="clearfix">
+							<dt>
+								<div class="photoer">
+									<img class="anchor-head" src="{$anchorinfo.avatar}" alt="{$anchorinfo.user_nickname}" data-id="{$anchorinfo.id}" />
+								</div>
+							</dt>
+							<dd>
+								<span class="name">{$anchorinfo.user_nickname}<span class="level"></span></span>
+								
+								<div class="medal-con"></div>
+							</dd>
+						</dl>
+						<p class="fans-num" title="粉丝数">{$anchorinfo.fans}</p>
+						
+						<p class="M-attention"><a class="BTN-add-attention" href="javascript:void(0)">{$attention_type}</a></p>
+	
+						<if condition="!$isplay">
+							<if condition="$usertype neq 50 and $usertype gt 10">
+								<p class="report_icon" id="admin_report">举报</p>
+							</if>
+						</if>
+						
+						<p class="flush_icon" onclick="reloadLive()">刷新</p>	
+						
+						<p class="share_icon">分享</p>
+						<!-- <span class="M-siliao" id="DDS_siliao_enter" data-id="{$anchorinfo.id}" data-name="{$anchorinfo.fans}" data-faceurl="{$anchorinfo.avatar}">私聊</span> -->
+						<div class="signs-con clearfix">
+							<div class="signs">
+								{$anchorinfo.signature}
+							</div>
+						</div>
+					</div>
+
+					<!-- 分享 -->
+					<div class="share_area">
+                        <div class="share_area_left fl">
+                            <p>分享</p>
+                            <div class="share_icon_list detail">
+                                
+                                <a class="weibo" href="javascript:void(0)" title="可在微博中打开" target="_blank" data-target="weibo">
+                                    <img src="__STATIC__/home/show/images/weibo_icon.png">
+                                </a>
+                                <a class="weibo" href="javascript:void(0)" title="可在QQ中打开" target="_blank" data-target="qq">
+                                    <img src="__STATIC__/home/show/images/qq_icon.png">
+                                </a>
+                                
+                            </div>
+                            <div>
+                                <span>直播间地址</span>
+                                <span><input class="share_url" id="share_url" type="text" value="{$configpub['site']}/{$anchorinfo['id']}" >
+                                </span>
+                                <span>
+                                    <input class="share_copy_btn" type="button" onclick="copyinput(this,'share_url')" value="复制链接">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="share_area_right fr">
+                            <p>二维码分享</p>
+                            <p><img src="/home/show/qrcode?roomid={$anchorinfo['id']}" width="100px"></p>
+                        </div>
+					</div>
+					<!-- 弹幕 -->
+					<div class="MR-horn-show hide">
+						<div class="bg"></div>
+					</div>
+					<!--点亮start-->
+					<div id="player-praises" data-bk="player-praises"> 
+						<div class="bubble"> 
+						</div> 
+                      
+                        <if condition="$isplay">
+							
+							<p class="closeroom_icon" onclick="JsInterface.stopRoom()">关闭直播</p>
+							<!-- <a class="info usertype" data-type="0" id="admin_change" onclick="liveType.changeTypeValue()">切换收费金额</a> -->
+							<if condition="$isplay">
+								<if condition="isset($liveinfo['type']) && $liveinfo['type'] neq 1" >
+									<p class="roomchange_icon" data-type="0" id="changetype" style="display: none;" onclick="liveType.changeTypeValue()">切换收费金额</p>
+								</if>
+							</if>
+		
+						<else />
+							<if condition="$usertype eq 60">
+								<p class="closeroom_icon" data-type="0" id="admin_close">关闭直播</p>	
+								<p class="forbidroom_icon" data-type="1" id="admin_stopit">禁止直播</p>
+							</if>
+						</if>
+                        
+                        <a href="javascript:void(0);" class="praises">
+                            <span></span>
+                        </a> 
+					</div>
+					<!--点亮end-->
+					<!-- 主播推荐 -->
+					<div class="SR-video-rec-con" id="SR-video-rec-con">
+						<span class="rec-title">主播推荐</span>
+						<div class="video-rec-con">
+							<ul>
+							</ul>
+						</div>
+					</div>
+
+					<!-- 礼物 -->
+					<div class="chat-gift" id="LF-chat-gift">
+						<div class="MR-gift">
+							<div class="gift-panel">
+								<ul class="gift-tab">
+									<li data-index="0" class="on">热门<i class="dot-new"></i></li>
+									<!-- <li data-index="1">豪华</li>
+									<li data-index="2">特殊</li>
+									<li data-index="3">专属</li>
+									<li data-index="4">我的包裹<i class="dot-tip hide"></i></li> -->
+								</ul>
+								<div class="gift-con">
+									<div class="gift-group">
+									
+										<div class="gift-wrap">
+											<div class="M-arrow-scroll">
+												<span class="left-arrow hide"></span>
+												<span class="right-arrow"></span>
+												<div class="con">
+													<div class="scroll">
+														<ul class="clearfix">
+															<volist name="giftinfo" id="v">
+															<li class="gift " data-locked="0" data-title="{$v['giftname']}" data-name="{$v['giftname']}" data-id="{$v['id']}" data-price="{$v['needcoin']}">
+																<div class="gift-pic">
+																	<img src="{$v['gifticon']}" />
+																</div>
+																<if condition="$v['mark'] eq '0'">
+																	<if condition="$v['type'] eq '1'">
+                                                                    <div class="mark gift-lian">
+																	豪
+																	</div>
+                                                                    <else/>
+                                                                    <div class="mark gift-lian">
+																	连
+																	</div>
+                                                                    </if>
+                                                                <elseif condition="$v['mark'] eq '1'"/>
+                                                                    <div class="mark gift-ren">
+																	热
+																	</div>
+                                                                <elseif condition="$v['mark'] eq '2'"/>
+                                                                    <div class="mark gift-shou">
+																	守
+																	</div>
+                                                                <elseif condition="$v['mark'] eq '3'"/>
+                                                                    <div class="mark gift-xing">
+																	幸
+																	</div>
+																</if>
+															</li>
+
+															
+															</volist>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="MR-gift-tip hide">
+											<div class="tip-content">
+												<img class="tip-img" src="" >
+												<div class="gift-tip-con">
+													<span class="gift-tip-name"></span>
+													<span class="gift-tip-price"></span>
+												</div>
+												<div class="gift-tip-desc"></div>
+											</div>
+										</div>
+									</div>
+									<div class="gift-footer clearfix">
+										<!-- 星星 -->
+										<div class="MR-free-gift hide">
+											<div class="MR-star">
+												<div class="progress"></div>
+												<div class="icon"></div>
+												<div class="count">
+													40
+												</div>
+											</div>
+											<ul class="freegift-more clrearfix">
+												<li class="more-btn star-0">
+													<div class="icon"></div>
+												</li>
+												<li class="more-btn star-1">
+													<div class="icon"></div>
+												</li>
+												<li class="more-btn star-10">
+													<div class="icon"></div>
+													<div class="bg">
+														<div class="tips ">
+															星动
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<!-- 点歌 -->
+										<div class="MR-app MR-app-content hide">
+											<div class="MR-app-item M-app-UI-enable">
+												<span class="icon app-icon-song"></span>
+												<span class="title">点歌</span>
+											</div>
+										</div>
+										<!-- 礼物赠送数量 -->
+										<div class="MR-moregift">
+											<a class="send-btn" href="javascript:void(0);">赠送</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>					
+					</div>
+					<!-- svga动画播放 -->
+					<div id="svgaCanvas"></div>
+				</div>
+
+				<!-- 礼物动画 -->
+				<div class="MR-gift-flash" id="LF-gift-container">
+					<div id="LF-gift-flash"></div>
+				</div>
+				<!-- 坐骑 -->
+				<div class="MR-enter-fx" id="LF-enter-fx">
+					<div id="LF-enter-flash">
+						<img src="__STATIC__/home/images/lazyload.png">
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<script>
+			var _DATA = {};
+			_DATA.config={$configj};
+			_DATA.anchor={$anchorinfoj};
+			_DATA.live={$liveinfoj};
+            _DATA.level={$levellistj};
+			_DATA.level_anchor={$levelanchorlistj};
+			_DATA.gift={$giftinfoj};
+			_DATA.user={$userinfo};
+            _DATA.usertype='{$usertype}';
+			var charge_interval = null;
+			var giftQueue = new Array(); 
+			var giftPlayState = 0;
+			var carQueue = new Array(); 
+			var carPlayState = 0;
+			var barrage_fee={$configpri['barrage_fee']};
+
+			var timeout; //点击用户列表时5秒消失产生的id
+			var country_json='{$country_list}';
+			var gift_swf_isplay=false; //svga豪华礼物初识播放状态为false
+			var gift_swf_arr=[]; //svga豪华礼物播放数组
+            
+		</script>
+		<script type="text/javascript">
+			window.onbeforeunload = function(e) {
+			return '确定离开此页吗？'; 
+		}
+		</script>
+		<script src="__STATIC__/js/jquery.js"></script>
+		<script src="__STATIC__/js/md5.js"></script>
+        <script src="__STATIC__/js/layer/layer.js"></script>
+        <script src="__STATIC__/js/clipboard/clipboard.min.js"></script>
+        
+        <!-- 视频播放start -->
+        <script src="__STATIC__/xigua/xgplayer.js?t=1617781695" type="text/javascript"></script>
+        <script src="__STATIC__/xigua/backups/xgplayer-flv.js.js?t=1617781695" type="text/javascript"></script>
+        <script src="__STATIC__/xigua/backups/xgplayer-hls.js.js?t=1617781695" type="text/javascript"></script>
+        <script src="__STATIC__/xigua/backups/player.js?t=1617781698" type="text/javascript"></script>
+        
+        <script src="__STATIC__/home/js/login.js?t=1617781695"></script> 
+        <script src="__STATIC__/js/svga.min.js?t=1617781695"></script>
+		<script src="__STATIC__/home/js/socket.io.js?t=1617781695"></script> 
+		<script>var socket = new io("{$configpri['chatserver']}");</script>
+        <script src="__STATIC__/home/js/event.js?t=1617781696"></script>
+		<script src="__STATIC__/home/js/eventListen.js?t=1617781695"></script> 
+		<script src="__STATIC__/home/show/js/chat.js?t=1617781698"></script>
+		
+		<if condition="$isplay">
+			<!-- 推流 -->
+			<script type="text/javascript">
+				$(function(){
+	                Socket.nodejsInit();
+				});
+			</script>
+		<else/>
+			<!-- 用户进房间 -->
+			<script type="text/javascript">
+				$(function(){
+					liveType.checkLive();
+				});
+			</script>
+		</if>
+		
+		<script type="text/javascript" src="__STATIC__/home/js/common.js?t=1617781695"></script>
+
+	<script type="text/javascript">
+    
+        var clipboard = new ClipboardJS('.copystream');
+        clipboard.on('success', function(e){
+            alert('复制成功啦!');
+        });
+        clipboard.on('error', function(e){
+            alert('复制失败，请长按复制!');
+        });
+        var clipboard1 = new ClipboardJS('.copystream1');
+        clipboard1.on('success', function(e){
+            alert('复制成功啦!');
+        });
+        clipboard1.on('error', function(e){
+            alert('复制失败，请长按复制!');
+        });
+        
+        var intervaltime1,intervaltime2;
+
+		function show_nowOther(){
+			if(intervaltime1){
+				clearTimeout(intervaltime1);
+			}
+			$(".now_other").show();
+		}
+
+		function hide_nowOther(){
+			
+			intervaltime1=setTimeout(function(){
+				$(".now_other").hide();
+			},1000);
+		}
+
+		function show_allOther(){
+			if(intervaltime2){
+				clearTimeout(intervaltime2);
+			}
+			$(".all_other").show();
+		}
+
+		function hide_allOther(){
+			intervaltime2=setTimeout(function(){
+				$(".all_other").hide();
+			},1000);
+		}
+
+		function copyinput(event,copyid){
+		    document.getElementById(copyid).select();
+		    document.execCommand("copy",false,null);
+		    layer.msg("已复制到粘贴板");
+		};
+		
+		function reloadLive(){
+			$.ajax({
+             	type: "post",
+             	url: "/home/show/reloadLive",
+             	data: {'stream':_DATA.live.stream},
+             	dataType: "json",
+             	success: function(data){
+             			var code=data.code;
+             			var msg=data.msg;
+             			if(code!=0){
+             				layer.msg(msg);
+             				return;
+             			}
+
+                      	var pull=data.info[0]['pull'];
+				        if(pull==''){
+				        	layer.msg('请稍后再刷新');
+				            return !1;
+				        }
+				        var data_play={
+							"autoplay": true
+
+						};
+				        xgPlay('playerzmblbkjP',pull,data_play);   
+              	},
+              	error:function(e){
+              		console.log(e);
+              		layer.msg("请稍后再刷新");
+              	}
+         	});
+		}
+		
+	</script>
+	</body>
+</html>

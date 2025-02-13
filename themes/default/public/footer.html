@@ -1,0 +1,56 @@
+	<div class="area-ft">
+		<div class="down-ft">
+			
+			<div class="down-ft_two fl">
+				<ul class="ewm_list">
+					<li>
+						<p class="ewm_title">微信公众号</p>
+						<p class="ewm_icon"><img src="{$configpub['wechat_ewm']}"></p>
+					</li>
+					<li>
+						<p class="ewm_title">android版下载</p>
+						<p class="ewm_icon"><img src="{$configpub['apk_ewm']}"></p>
+					</li>
+					<li>
+						<p class="ewm_title">iPhone版下载</p>
+						<p class="ewm_icon"><img src="{$configpub['ipa_ewm']}"></p>
+					</li>
+					<div class="clearboth"></div>
+				</ul>
+			</div>
+			<div class="down-ft_three fl">
+				<div class="phone_icon fl">
+					<img src="__STATIC__/home/images/foot_phone.png">
+				</div>
+				<div class="phone_msg fl">
+					<div class="phone_number">{$configpub['mobile']}</div>
+					<div class="phone_desc">客服热线(服务时间:8:00-16:00)</div>
+				</div>
+				<div class="clearboth"></div>
+			</div>
+			<div class="down-ft_four fl">
+				<p>地址:{$configpub['address']}</p>
+			</div>
+			<div class="clearboth"></div>
+		</div>
+	</div>
+	<div id="doc-ft">
+		<div class="container">
+			<if condition="$configpub['copyright_url'] neq ''">
+				
+					<p class="footer">
+						<a href="{$configpub['copyright_url']}" target="_blank">
+						{:nl2br($configpub['copyright'])}
+						</a>
+					</p>
+				
+			<else />
+				<p class="footer">
+					{:nl2br($configpub['copyright'])}
+				</p>
+			</if>
+		</div>
+	</div>
+		
+	  
+

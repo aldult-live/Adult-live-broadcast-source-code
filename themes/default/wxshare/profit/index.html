@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <include file="wxshare@head"/>
+    <title>我的收益</title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/wxshare/css/profit.css">
+</head>
+<body class="index">
+	<div class="ret">
+		<a class="ricon" href="{:url('wxshare/user/index')}"><img src="__STATIC__/wxshare/images/return_b.png"></a>
+		<div class="tit">我的收益</div>
+		<div class="cashls_tit"  onclick="location.href='{:url('wxshare/profit/cash_list')}'">记录</div>
+	</div>
+	
+	<div class="ptop">
+		<div class="ztit">总{$configpub['name_votes']}数</div>
+		<div class="zvotestotal">{$rs['votestotal']}</div>
+		<div class="kvotes">可提现{$configpub['name_votes']}数 <span>{$rs['votes']}</span></div>
+	</div>
+	<ul class="pul_tx">
+		<li>
+			<div class="li_titl">输入要提取的{$configpub['name_votes']}数</div>
+			<div class="li_inpu"><input type="text" name="votes" id="coin_z" placeholder="0" autocomplete="off" maxlength="10" onkeyup="this.value=this.value.replace(/\D/g,'')" /></div>
+		</li>
+		<li>
+			<div class="li_titl">可到账金额</div>
+			<div class="li_rmb" id="coin_m">￥0</div>
+		</li>
+		<li style="border:none">
+			<div class="li_titl">请选择提现账号</div>
+			<div class="li_zh">
+				<select id="account">
+					<volist name="zlist" id="vo">
+						<option value ="{$vo.id}">{$vo.type_account}</option>
+					</volist>
+				</select>
+			
+			</div>
+			
+		</li>
+	</ul>
+	
+	<div class="cash_sub" onclick="exchange()">立即提现</div>
+	<div class="cash_msg">{$rs['tips']}</div>
+ 
+	
+	
+    
+    
+    <include file="wxshare@footer"/>
+	<script>
+		var bili="{$rs['cash_rate']}";
+		var cash_take="{$rs['cash_take']}";
+		$('#coin_z').on('input propertychange', function(){
+			var coin_z=$('#coin_z').val();
+			if(isNaN(coin_z)){
+				coin_z=0;
+			}
+			var coin=((coin_z/bili)*(100-cash_take)/100).toFixed(2);
+			
+			$("#coin_m").text('￥'+coin);
+		})
+		
+		function exchange(){
+			var accountid=$("#account  option:selected").val();
+			var cashvote=$('#coin_z').val();
+			if(!accountid || accountid==''){
+				layer.msg("请输入账号");
+				return;
+
+			}
+			
+			if(cashvote==''){
+				layer.msg("请输入提现金额");
+				return;
+
+			}
+			$.ajax({
+				type: "POST",
+				url:'/wxshare/profit/edit_exchange',
+				data:{
+					accountid:accountid,
+					cashvote:cashvote,
+				},
+				dataType:'json',
+				async: false,
+				error: function(){
+					layer.msg("提现失败！");
+				},
+				success: function(data){
+					layer.msg(data['msg'],{time:2000},function(){
+						if(data['code']==0){
+							window.location.reload();
+						}
+					});
+				}
+			});
+		}
+	</script>
+
+</body>
+</html>

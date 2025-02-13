@@ -1,0 +1,78 @@
+<include file="public@head"/>
+<title>充值页面</title>
+<style type="text/css">
+	.pay_result{
+		width: 1200px;
+		margin: 0 auto;
+		min-height: 500px;
+		text-align: center;
+		padding-top: 100px;
+		background: #FFF;
+		font-size: 16px;
+	}
+	.order_status{
+		font-weight: bold;
+	}
+	.order_msg{
+		width: 400px;
+		margin: 0 auto;
+		margin-top: 50px;
+		text-align: left;
+	}
+	.order_msg p{
+		padding: 10px;
+		font-size: 14px;
+	}
+	.order_msg_title{
+		font-weight: bold;
+	}
+</style>
+</head>
+<body>
+
+<include file="public@header"/>
+
+<div class="wrapper">
+
+
+<div class="pay_result">
+	
+	<if condition="$status eq '-1'">
+		<img src="__STATIC__/home/images/error1.png">
+		<p class="order_status">订单不存在！</p>
+	<elseif condition="$status eq '0'" />
+		<img src="__STATIC__/home/images/error1.png">
+		<p class="order_status">支付失败！</p>
+	<else />
+		<img src="__STATIC__/home/images/success.png">
+		<p class="order_status">恭喜您，支付成功！</p>
+		<div class="order_msg">
+			<p class="order_msg_title">订单详情</p>
+			<p>订单编号：{$orderinfo['orderno']}</p>
+			<p>下单时间：{:date("Y-m-d H:i:s",$orderinfo['addtime'])}</p>
+			<p>已付款：{$orderinfo['money']}元</p>
+			<p><span id='second'>10</span>秒后跳转充值页面</p>
+		</div>
+	</if>
+	
+</div>
+
+</div>
+<include file="public@footer"/>
+<include file="public@scripts"/>
+<script type="text/javascript">
+	$(function(){
+
+		var second=10;
+		var falg=setInterval(function(){
+			second--;
+			if(second==1){
+				window.location.href="/home/Payment/index";
+				clearInterval(falg);
+			}
+			$("#second").html(second);
+		},1000);
+	});
+</script>
+</body>
+</html>

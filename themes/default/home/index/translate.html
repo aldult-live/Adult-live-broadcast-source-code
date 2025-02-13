@@ -1,0 +1,73 @@
+<include file="public@head"/>
+<title>{$configpub['site_seo_title']} -{$configpub['site_name']}</title>
+<link type="text/css" rel="stylesheet" href="__STATIC__/home/css/index.css"/>
+
+</head>
+<body>
+<div class="wrapper">
+	<include file="public@header"/>
+    <!-- 热门直播 -->
+    <div class="container">
+        <div class="g-box feed-list" id="hot">
+            <form class="well translate_form" method="post" action="/home/Index/translate">
+                <div class="box-hdd">
+                    <input name="keyword" class="translate_input" autocomplete="off" tabindex="0" value="{$keyword}" placeholder="请输入用户名、用户ID"/>
+                    <input type="submit" class="translate_primary" value="搜索">
+                        <div class="search_count">
+                    <span>{$msg['info']}</span>
+                    <span class="search_hotkey">{$msg['name']}</span>
+                    <span>{$msg['result']}</span>
+                </div>
+                <if condition="$msg['type'] eq '0'">
+                    <div class="search_tuijian_container">
+                        <span>推荐其他精彩直播</span>
+                    </div>
+                </if>
+                    
+                    
+                </div>
+            
+            </form>
+            <div>
+                <hr class="search_line">
+            </div>
+            <div class="box-bd translate_bd">
+                <ul class="list">
+                    <volist name="lists" id="v">
+                    <li class="feed <if condition="$v['islive'] eq '1'">live<else/>review</if> " style="height: 342px;margin-bottom: 18px;">
+                        <a class="link" <if condition="$msg['type'] eq '0'">  href="/{$v['uid']}"<else/> href="/{$v['id']}"</if> target="_blank">
+                            <img class="screenshot thumb" src="__STATIC__/home/images/lazyload.png" data-original="{$v['avatar']}"/>
+                            <p class="user">
+                                <img class="avatar thumb" src="__STATIC__/home/images/lazyload.png" data-original="{$v['avatar']}"/><span class="username">{$v['user_nickname']}</span>
+                            </p>
+                        <div class="comment">
+                            <div class="comment-inner">
+                                <if condition="$v['title']">
+                                    {$v['title']}
+                                <else/>
+                                    此处应该有互动
+                                </if>
+                            </div>
+                        </div>
+                    </a>
+                    </li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="pagination">{$page}</div>
+			
+    <include file="public@footer"/>
+    <include file="public@scripts"/>
+</div>
+
+<script>
+$(function(){
+	//图片延迟加载
+	$("img.thumb").lazyload({effect: "fadeIn"});		
+})
+</script>
+
+</body>
+</html>

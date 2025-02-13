@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <include file="appapi@head"/>
+	<link type="text/css" rel="stylesheet" href="__STATIC__/appapi/css/family.css?t=1561712925"/>
+	<style type="text/css">
+		body{
+			background: #FFF;
+		}
+	</style>
+    <title>我的家族</title>
+</head>
+<body >
+	<div class="home">
+        <div class="detai_top">
+            <div class="user-list user-list-fillet">
+                <ul>
+                    <li>
+                        <div class="thumb">
+                            <img src="{$familyinfo['badge']}">
+                        </div>
+                        <div class="info">
+                            <p class="info-title">{$familyinfo['name']}</p>
+                            <p class="info-des2">ID：{$familyinfo['id']}</p>
+                            <p class="info-des">家族长：{$familyinfo['userinfo']['user_nickname']}</p>
+                            
+                        </div>
+                        <div class="action">
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+		<div class="home_info">
+			<ul>
+				
+				<if condition="$type eq '1'">
+				<li>
+					<span class="home_info_t">家族默认抽成</span>
+					<span class="home_info_b edit_divide"  data-divide="{$familyinfo['divide_family']}"><span id="divide_family">{$familyinfo['divide_family']}</span>%</span>
+				</li>
+				<else/>
+				<li>
+					<span class="home_info_t">家族抽成比例</span>
+					<span class="home_info_b"><span id="divide_family">{$divide_family}</span>%</span>
+				</li>
+				</if>
+			</ul>
+		</div>
+        <div class="des">
+            <a href="/appapi/Family/setdes?familyid={$familyinfo['id']}&uid={$uid}&token={$token}">
+            	<div class="des_title">家族简介 <span class="edit_des"></span>
+            	</div>
+            </a>
+            <div class="des_body">{$familyinfo['briefing']}</div>
+        </div>
+        <div class="des">
+        	<a href="/appapi/family/member?familyid={$familyinfo['id']}&uid={$uid}&token={$token}">
+            	<div class="des_title">家族成员 <span class="edit_des"></span>
+            	</div>
+            </a>
+            <div class="des_body">
+            	<ul class="family_home_userlist">
+            		<volist name="list" id="vo">
+            			<li><img src="{$vo['userinfo']['avatar']}" /></li>
+            		</volist>
+            		<div class="clearfix"></div>
+            	</ul>
+
+            </div>
+        </div>
+		<div class="line10"></div>
+		
+		<div class="des">
+            <a href="/appapi/family/long?familyid={$familyinfo['id']}&uid={$uid}&token={$token}">
+            	<div class="des_title">主播数据 <span class="edit_des"></span>
+            	</div>
+            </a>
+        </div>
+
+        <div class="des">
+            <a href="/appapi/family/profit?familyid={$familyinfo['id']}&uid={$uid}&token={$token}">
+            	<div class="des_title">家族盈利 <span class="edit_des"></span>
+            	</div>
+            </a>
+        </div>
+        <if condition="$type eq '1'">
+	        <div class="des">
+	            <a href="/appapi/family/examine?familyid={$familyinfo['id']}&uid={$uid}&token={$token}">
+	            	<div class="des_title">签约审核 <span class="edit_des"></span>
+	            	</div>
+	            </a>
+	        </div>
+
+	        <div class="des">
+	            <a href="/appapi/family/signout?familyid={$familyinfo['id']}&uid={$uid}&token={$token}">
+	            	<div class="des_title">解约审核 <span class="edit_des"></span>
+	            	</div>
+	            </a>
+	        </div>
+
+	        <!-- 后台家族成员审核开关打开 -->
+			<if condition="$divide_switch eq '1'">
+				<div class="des">
+		            <a href="/appapi/family/divide_list?familyid={$familyinfo['id']}&uid={$uid}&token={$token}">
+		            	<div class="des_title">分成申请 <span class="edit_des"></span>
+		            	</div>
+		            </a>
+		        </div>
+				
+			</if>
+
+	    <else />
+
+			<div class="des">
+	            <a href="/appapi/family/relieve?uid={$uid}&token={$token}">
+	            	<div class="des_title">解除签约 <span class="edit_des"></span>
+	            	</div>
+	            </a>
+	        </div>
+		</if>
+
+	</div>
+	<script>
+		var familyid='{$familyinfo['id']}';
+	</script>
+	<include file="appapi@footer"/>
+	<script src="__STATIC__/appapi/js/family.js"></script>
+</body>
+</html>

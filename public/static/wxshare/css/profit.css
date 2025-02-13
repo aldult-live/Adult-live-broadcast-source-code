@@ -1,0 +1,286 @@
+
+.index{
+    background: #fff url('../images/profit/profit_bg.png') no-repeat;
+	background-size: 100% auto;
+}
+.ret{
+	width: 100%;
+    height: 1rem;
+	position: relative;
+}
+.ret .ricon{
+	width:1rem;
+	height:1rem;
+	position: absolute;
+	display: block;
+}
+.ret .ricon>img{
+	width: 0.25rem;
+    position: relative;
+    top: 0.28rem;
+    left: 0.3rem;
+}
+.ret .tit{
+	width: 100%;
+    line-height: 1rem;
+    text-align: center;
+    font-size: 0.38rem;
+    color: #fff;
+}
+.ret .sub{
+	position: absolute;
+    top: 0.26rem;
+    font-size: 0.3rem;
+    right: 0.2rem;
+    width: 1.2rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    background-color: #FC4192;
+    border-radius: 1rem;
+    color: #fff;
+}
+.ret .cashls_tit{
+	position: absolute;
+    top: 0.26rem;
+    font-size: 0.3rem;
+    right: 0.2rem;
+    width: 1.2rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    color: #fff;
+}
+.ptop{
+	background: #fff url('../images/profit/ptop_bg.png') no-repeat;
+	background-size: 100% 100%;
+    width: 88%;
+    height: 3.1rem;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+    border-radius: 0.2rem;
+    box-shadow: 1px 4px 3px #e5e5e5;
+    padding: 0.2rem 2%;
+}
+.ptop .ztit{
+	height: 0.7rem;
+    line-height: 0.8rem;
+    font-size: 0.28rem;
+    color: #888888;
+}
+.ptop .zvotestotal{
+	height: 1rem;
+    line-height: 1rem;
+    font-size: 0.38rem;
+    color: #000;
+	border-bottom: 1px solid #e5e5e5;
+	font-weight: bold;
+}
+.ptop .kvotes{
+	height: 1.4rem;
+    line-height: 1.4rem;
+    font-size: 0.28rem;
+	color: #888888;
+}
+.ptop .kvotes>span{
+    font-size: 0.38rem;
+	color: #FC6210;
+	font-weight: bold;
+}
+
+
+.pul_tx{
+	width: 92%;
+	margin: 0 auto;
+	margin-top: 0.5rem;
+}
+
+.pul_tx>li{
+	width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    border-bottom: 1px solid #EBEBEB;
+	position: relative;
+}
+
+.pul_tx>li>.li_titl{
+	width: 50%;
+	color:#9C9C9C;
+	font-size: 0.32rem;
+}
+.pul_tx>li>.li_inpu{
+	width: 46%;
+    position: absolute;
+    top: 0px;
+    right: 4%;
+}
+.pul_tx>li>.li_inpu>input{
+	font-size: 0.32rem;
+    color: #000;
+    border: none;
+    text-align: right;
+    width: 100%;
+    height: 0.8rem;
+}
+.pul_tx>li>.li_rmb{
+	width: 46%;
+	font-size: 0.32rem;
+    color: #000;
+	text-align: right;
+    position: absolute;
+    top: 0px;
+    right: 4%;
+}
+.pul_tx>li>.li_zh{
+	width: 46%;
+    position: absolute;
+    top: 0px;
+    right: 4%;
+}
+.pul_tx>li>.li_zh>#account{
+	font-size: 0.32rem;
+    color: #000;
+    border: none;
+    text-align: right;
+    width: 100%;
+    height: 0.8rem;
+}
+
+.cash_sub{
+	
+    width:6rem;
+    height:0.8rem;
+    line-height:0.8rem;
+    text-align:center;
+    color:#fff;
+    font-size:0.32rem;
+    border-radius:0.4rem;
+	margin:0 auto;
+	margin-top:1.2rem;
+	margin-bottom:0.2rem;
+    background: -webkit-linear-gradient(left, #FE6E12 , #FE9326); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right, #FE6E12, #FE9326); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right, #FE6E12, #FE9326); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, #FE6E12 , #FE9326); /* 标准的语法 */
+}
+
+.cash_msg{
+	width: 100%;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    text-align: center;
+    color: #8F8F8F;
+    font-size: 0.28rem;
+}
+
+.tab_b{
+    
+
+    width: 100%;
+
+    background:#fcfcfc;
+	position:relative;
+}
+.profit_ul_t{
+	width:100%;
+	height:0.8rem;
+	line-height:0.8rem;
+	background:#fff;
+    border-bottom:1px solid #f5f5f5;
+    -moz-box-sizing: border-box;  /*Firefox3.5+*/
+	-webkit-box-sizing: border-box; /*Safari3.2+*/
+	-o-box-sizing: border-box; /*Opera9.6*/
+	-ms-box-sizing: border-box; /*IE8*/
+	box-sizing: border-box;
+}
+.profit_ul_t span{
+	display:inline-block;
+	float:left;
+
+	height:0.8rem;
+	line-height:0.8rem;
+	text-align:center;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size:0.3rem;
+    -moz-box-sizing: border-box;  /*Firefox3.5+*/
+	-webkit-box-sizing: border-box; /*Safari3.2+*/
+	-o-box-sizing: border-box; /*Opera9.6*/
+	-ms-box-sizing: border-box; /*IE8*/
+	box-sizing: border-box;
+    border-left:1px solid #f5f5f5;
+}
+.profit_ul_t span:first-child{
+    border:none;
+}
+
+.profit_ul_t span.coin{
+    width:27%;
+}
+.profit_ul_t span.rmb{
+	width:28%;
+}
+.profit_ul_t span.nums{
+    width:17%;
+}
+.profit_ul_t span.ttime{
+    width:28%;
+}
+
+.profit_ul{
+
+	width:100%;
+	height:100%;
+
+	overflow:auto;
+}
+.profit_ul ul li{
+	height:0.8rem;
+	line-height:0.8rem;
+	border-bottom:1px solid #f5f5f5;
+}
+.profit_ul ul li span{
+	display:inline-block;
+	float:left;
+	width:25%;
+	height:0.8rem;
+	line-height:0.8rem;
+	text-align:center;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	color:#969696;
+    -moz-box-sizing: border-box;  /*Firefox3.5+*/
+	-webkit-box-sizing: border-box; /*Safari3.2+*/
+	-o-box-sizing: border-box; /*Opera9.6*/
+	-ms-box-sizing: border-box; /*IE8*/
+	box-sizing: border-box;
+    border-left:1px solid #f5f5f5;
+}
+.profit_ul ul li span:first-child{
+    border:none;
+}
+
+.profit_ul ul li span.coin{
+    color:#ff5878;
+    text-align:left;
+    font-weight: bold;
+	width: 27%;
+    padding-left: 1%;
+}
+.profit_ul ul li span.coin img{
+    width: 0.32rem;
+    vertical-align: sub;
+    margin:0 0.1rem;
+}
+.profit_ul ul li span.rmb{
+	width:28%;
+}
+.profit_ul ul li span.nums{
+	width:17%;
+    color:#646464;
+}
+.profit_ul ul li span.ttime{
+	width:28%;
+}

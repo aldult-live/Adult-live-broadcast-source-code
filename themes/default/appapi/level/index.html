@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<include file="appapi@head"/>
+		<title>我的等级</title>
+		<link href='__STATIC__/appapi/css/level.css?t=1589966625' rel="stylesheet" type="text/css" >
+		<style type="text/css">
+			.bg_default1{
+				background: #FFF;
+			}
+		</style>
+	</head>
+<body >
+
+	<div class="main">
+        <div class="tab clearfix">
+            <ul>
+                <li class="on">
+                    用户等级
+                    <div class="tab_line bg_default1"></div>
+                </li>
+                <li>
+                    主播等级
+                    <div class="tab_line bg_default1"></div>
+                </li>
+            </ul>
+        </div>
+		<div class="top-body ">
+			<div class="level">
+				<div class="speed">
+					<div class="info">
+						<div class="name">
+                            <img src="{$userinfo['avatar']}">
+                        </div>
+                        <div class="avatar_bg"></div>
+						<div class="tip">Lv.{$levelinfo['levelid']}</div>
+					</div>
+					<div class="level_val">
+						经验值：<span id="total" style="margin-right: 10px;">{$userinfo['consumption']}</span>
+						<if condition="$type eq '1'">
+							距离升级：<span id="next_diff">{$cha}</span>
+						<else/>
+							你已经达到最高级别
+						</if>
+					</div>
+                    <div class="level_jindu">
+                        <div class="level_jindu_l">
+                            Lv.{$levelinfo['levelid']}
+                        </div>
+                        <div class="jindu">
+                            <div class="levelnp">
+                                <div class="leveln n2 bg_default1" id="progress" style="width:{$baifen}%; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        <div class="level_jindu_r">
+                            <if condition="$type eq '1'">
+                                Lv.{$levelinfo['levelid']+1}
+                            <else/>
+                                Lv.Max
+                            </if>
+                        </div>
+                    </div>
+					
+				</div>
+			</div>
+			<div class="privilege clearfix">
+				<div class="title">
+					<img src="__STATIC__/appapi/images/level/level_title_left.png" />
+					等级特权
+					<img src="__STATIC__/appapi/images/level/level_title_right.png" />
+				</div>
+				<ul>
+					<li>
+                        <img src="__STATIC__/appapi/images/level/v_level_id.png">
+                        <div class="privilege_t">排名靠前</div>
+                    </li>
+					<li>
+                        <img src="__STATIC__/appapi/images/level/v_level_id2.png">
+                        <div class="privilege_t">等级勋章</div>
+                    </li>
+				</ul>
+			</div>
+			<div class="privilege clearfix" style="margin-top: 0.2rem;">
+				<div class="title">
+					<img src="__STATIC__/appapi/images/level/level_title_left.png" />
+					如何升级
+					<img src="__STATIC__/appapi/images/level/level_title_right.png" />
+				</div>
+				<ul>
+					<li>
+                        <img src="__STATIC__/appapi/images/level/send_gift.png">
+                        <div class="privilege_t">送礼</div>
+                    </li>
+					<li>
+                        <img src="__STATIC__/appapi/images/level/shop_consumption.png">
+                        <div class="privilege_t">道具消费</div>
+                    </li>
+				</ul>
+			</div>
+            <div class="line10"></div>
+			<div class="tips">
+				<a href="/appapi/level/level">用户等级说明</a>
+			</div>
+		
+		</div>
+		
+		<div class="top-body hide">
+			<div class="level level_a">
+				<div class="speed">
+                    <div class="info">
+						<div class="name">
+                            <img src="{$userinfo['avatar']}">
+                        </div>
+                        <div class="avatar_bg"></div>
+						<div class="tip">Lv.{$levelinfo_a['levelid']}</div>
+					</div>
+					<div class="level_val">
+						经验值：<span id="total" style="margin-right: 10px;">{$userinfo['votestotal']}</span>
+						<if condition="$type_a eq '1'">
+							距离升级：<span id="next_diff">{$cha_a}</span>
+						<else/>
+							你已经达到最高级别
+						</if>
+					</div>
+                    <div class="level_jindu">
+                        <div class="level_jindu_l">
+                            Lv.{$levelinfo_a['levelid']}
+                        </div>
+                        <div class="jindu">
+                            <div class="levelnp">
+                                <div class="leveln n2 bg_default1" id="progress" style="width:{$baifen_a}%; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        <div class="level_jindu_r">
+                            <if condition="$type_a eq '1'">
+                                Lv.{$levelinfo_a['levelid']+1}
+                            <else/>
+                                Lv.Max
+                            </if>
+                        </div>
+                    </div>
+
+				</div>
+			</div>
+			<div class="privilege clearfix">
+				<div class="title">
+					<img src="__STATIC__/appapi/images/level/level_title_left.png" />
+					等级特权
+					<img src="__STATIC__/appapi/images/level/level_title_right.png" />
+				</div>
+				<ul>
+					<li>
+                        <img src="__STATIC__/appapi/images/level/m_level_id.png">
+                        <div class="privilege_t">等级标识</div>
+                    </li>
+					<li>
+                        <img src="__STATIC__/appapi/images/level/m_level_id2.png">
+                        <div class="privilege_t">身份标识</div>
+                    </li>
+				</ul>
+			</div>
+			<div class="privilege clearfix" style="margin-top: 0.2rem;">
+				<div class="title">
+					<img src="__STATIC__/appapi/images/level/level_title_left.png" />
+					如何升级
+					<img src="__STATIC__/appapi/images/level/level_title_right.png" />
+				</div>
+				<ul>
+					<li>
+                        <img src="__STATIC__/appapi/images/level/a_send_gift.png">
+                        <div class="privilege_t">收礼</div>
+                    </li>
+					<li>
+                        <img src="__STATIC__/appapi/images/level/shop_consumption.png">
+                        <div class="privilege_t">计费房间</div>
+                    </li>
+				</ul>
+			</div>	
+            <div class="line10"></div>
+			<div class="tips">
+				<a href="/appapi/level/level_a">主播等级说明</a>
+			</div>
+		</div>
+
+	</div> 
+</body>
+
+<include file="appapi@footer"/>
+<script>
+	(function(){
+		$(".tab ul li").on("click",function(){
+			$(this).siblings().removeClass("on");
+			$(this).addClass("on");
+			$(".top-body").hide().eq($(this).index()).show();
+		})
+	})()
+</script>
+</body>
+</html>

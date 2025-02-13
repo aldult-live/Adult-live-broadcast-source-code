@@ -1,0 +1,93 @@
+body {
+    background: url('./images/login/bg.png') no-repeat center top;
+    background-size:100%;
+}
+
+.wrap {
+    margin-top: 100px;
+}
+.login_bd{
+    margin:0 auto;
+    width:400px;
+}
+.login_bd .bd_top{}
+.login_bd .bd_top img{
+    width:100%;
+}
+.login_bd .bd_center{
+    position:relative;
+    padding:0 70px 40px;
+    background:#fff;
+    border-radius:0 0 40px 40px;
+}
+.login_bd .bd_center h1{
+    margin:0;
+    padding-top:20px;
+    height:70px;
+    font-weight:bold;
+}
+.login_bd .bd_center .form-group{}
+.login_bd .bd_center .form-group .form-control{
+    height: 45px;
+    border:1px solid #c8ced1;
+}
+.login_bd .bd_center .form-group .form-control:focus{
+    outline: none;
+}
+.login_bd .bd_center .border{
+    border-bottom:0px solid #7d7d7d;
+}
+.login_bd .bd_center .name{
+    padding-left:30px;
+    background: url('./images/login/name.png') no-repeat 0;
+}
+.login_bd .bd_center .pass{
+    padding-left:30px;
+    background: url('./images/login/pass.png') no-repeat 0;
+}
+.login_bd .bd_center .code{
+    padding-left:30px;
+    background: url('./images/login/code.png') no-repeat 0;
+}
+.login_bd .bd_center .btn-primary{
+    margin-top:40px;
+    height:45px;
+    text-align:center;
+    color:#fff;
+    font-size:18px;
+    border:none;
+    border-radius:25px;
+    background: -webkit-linear-gradient(left, #ffd350 , #ffd350); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right, #ffd350, #ffd350); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right, #ffd350, #ffd350); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, #ffd350 , #ffd350); /* 标准的语法 */
+}
+.login_bd .bd_center .png_float{
+    position:absolute;
+    bottom:0;
+}
+.login_bd .bd_center .png_float img{}
+.login_bd .bd_center .png_left{
+    left:-70px;
+}
+.login_bd .bd_center .png_left img{
+    width:120px;
+}
+.login_bd .bd_center .png_right{
+    right:-85px;
+}
+.login_bd .bd_center .png_right img{
+    width:150px;
+}
+
+.bd_bottom{
+    margin-top:50px;
+    height:100px;
+    text-align:center;
+    color:#fff;
+    font-size:14px;
+}
+
+.yzm img{
+    width: 100%;
+}

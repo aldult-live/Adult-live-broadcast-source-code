@@ -1,0 +1,242 @@
+
+body{
+    background: url('../images/auth/auth_bg.png') no-repeat;
+}
+input::-webkit-input-placeholder {
+/* WebKit browsers */
+color: #969696;
+}
+input:-moz-placeholder {
+/* Mozilla Firefox 4 to 18 */
+color: #969696;
+}
+input::-moz-placeholder {
+/* Mozilla Firefox 19+ */
+color: #969696;
+}
+input:-ms-input-placeholder {
+/* Internet Explorer 10+ */
+color: #969696;
+}
+
+.ret{
+	width: 100%;
+    height: 1rem;
+    
+	position: relative;
+}
+.ret .ricon{
+	width:1rem;
+	height:1rem;
+	position: absolute;
+	display: block;
+}
+.ret .ricon>img{
+	width: 0.25rem;
+    position: relative;
+    top: 0.28rem;
+    left: 0.3rem;
+}
+.ret .tit{
+	width: 100%;
+    line-height: 1rem;
+    text-align: center;
+    font-size: 0.38rem;
+    color: #fff;
+}
+.ret .sub{
+	position: absolute;
+    top: 0.26rem;
+    font-size: 0.3rem;
+    right: 0.2rem;
+    width: 1.2rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    background-color: #FC4192;
+    border-radius: 1rem;
+    color: #fff;
+}
+
+
+.auth_top{
+    padding: 0 0.29rem;
+    height: 0.9rem;
+    line-height: 0.9rem;
+    color: #fff;
+    font-size: 0.25rem;
+
+}
+.auth_tit{
+	padding: 0 0.4rem;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: 0.3rem;
+}
+.auth_tit>img{
+	width: 0.3rem;
+    margin-right: 0.1rem;
+}
+.auth_inp{
+	margin:0 0.3rem;
+    background:#fff;
+	border-radius: 0.4rem;
+	padding-bottom: 0.5rem;
+    padding-top: 0.2rem;
+}
+
+.auth_inp .auth_list{
+    padding:0 0.72rem;
+}
+
+.auth_list li{
+	height: 1rem;
+	line-height: 1rem;
+	border-bottom: 1px solid #F0F0F0;
+	list-style: none;
+	position: relative;
+	margin: 0 auto;
+}
+
+.auth_list_title{
+    position: absolute;
+    top:0;
+	left: 0;
+    padding-left:0.07rem;
+	width: 25%;
+	height: 1rem;
+	line-height: 1rem;
+    color: #000;
+	font-size: 0.26rem;
+    border-radius:0.4rem;
+    -moz-box-sizing: border-box;  /*Firefox3.5+*/
+	-webkit-box-sizing: border-box; /*Safari3.2+*/
+	-o-box-sizing: border-box; /*Opera9.6*/
+	-ms-box-sizing: border-box; /*IE8*/
+	box-sizing: border-box;	
+}
+
+.auth_list_right{
+    position: absolute;
+	right:0;
+	width: 75%;
+    height:1rem;
+}
+
+.auth_list_right input{
+	width: 95%;
+	height: 1rem;
+	line-height: 1rem;
+	-webkit-appearance:none;
+	border: none;
+	color: #323232;
+	background: none;
+	outline: none;
+	font-size: 0.26rem;
+    vertical-align:top;
+}
+
+.auth_list li.border_none{
+	border: none;
+}
+
+
+.autharea{
+	margin:0.5rem auto;
+	margin-bottom:0.2rem;
+    width:6rem;
+    height:0.8rem;
+    line-height:0.8rem;
+    text-align:center;
+    color:#fff;
+    font-size:0.32rem;
+    border-radius:0.4rem;
+    background: -webkit-linear-gradient(left, #04D2D2 , #02E5D2); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right, #04D2D2, #02E5D2); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right, #04D2D2, #02E5D2); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, #04D2D2 , #02E5D2); /* 标准的语法 */
+}
+
+
+
+.line_bd_u{
+	margin: 0 0.3rem;
+    background: #fff;
+    border-radius: 0.4rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.2rem;
+	margin-top: 0.4rem;
+}
+
+
+
+.upload{
+    padding:0 0.3rem;
+}
+.upload li{
+    float: left;
+    margin-right: 0.3rem;
+    width: 2.4rem;
+    text-align: center;
+    background: #eee;
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+	margin-bottom: 0.2rem;
+    
+}
+
+.upload li .up_img{
+    position:relative;
+    line-height:1;
+}
+.upload li .up_img img{
+    width:2.2rem;
+	height: 1.4rem;
+    vertical-align:top;
+}
+.upload li .shadd{
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.1);
+}
+.upload li .shadd .progress_bd{
+    position: relative;
+    margin-left: 10%;
+    width: 80%;
+    margin-top: 35%;
+    height: 0.1rem;
+    border: 1px solid  #fff;
+    background-color: #ccc;
+    border-radius: 0.1rem;
+}
+.upload li .shadd .progress_bd .progress_sp{
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    width: 0;
+    height: 0.1rem;
+    border: 1px solid #fff;
+    border-radius: 0.1rem;
+    background-color: #fff;
+}
+.upload li .up_t{
+    height: 0.5rem;
+    line-height: 0.6rem;
+    text-align: center;
+    color: #969696;
+    font-size: 0.24rem;
+}
+.upload li.square{
+    width:1.5rem;
+}
+
+.upload li.square .up_img img{
+    width:1.5rem;
+    height:1.5rem;
+}
+
+

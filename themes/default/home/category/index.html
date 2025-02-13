@@ -1,0 +1,56 @@
+<include file="public@head"/>
+
+<title>{$site_seo_title} - {$configpub['site_name']}</title>
+
+<link type="text/css" rel="stylesheet" href="__STATIC__/home/css/index.css"/>
+<style type="text/css">
+	.feed-list .feed{
+		height: 360px;
+	}
+</style>
+</head>
+<body>
+<div class="wrapper">
+	<include file="public@header"/>
+	<div id="doc-bd">
+		<div class="container clearfix">
+			<div class="main clearfix">
+				<!-- 分类推荐 -->
+				<div class="g-box feed-list" >
+
+					<div class="box-bd">
+						<ul class="list">
+							<volist name="lists" id="v">
+							<li class="feed <if condition="$v['islive'] eq '1'">live<else/></if>"><a class="link" href="/{$v['uid']}" target="_blank"><img class="screenshot thumb" src="__STATIC__/home/images/lazyload.png" data-original="{$v['thumb']}"/>
+							<p class="user">
+								<img class="avatar thumb" src="__STATIC__/home/images/lazyload.png" data-original="{$v['avatar']}"/><span class="username">{$v['user_nickname']}</span>
+							</p>
+							<div class="comment">
+								<div class="comment-inner">
+									<if condition="$v['title']">
+										{$v['title']}
+									<else/>
+										此处应该有互动
+									</if>
+								</div>
+							</div>
+							</a></li>
+							</volist>
+						</ul>
+					</div>
+					<div class="pagination">{$page}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<include file="public@footer"/>
+<include file="public@scripts"/>
+
+<script>
+$(function(){
+	//图片延迟加载
+	$("img.thumb").lazyload({effect: "fadeIn"});		
+})
+</script>
+</body>
+</html>

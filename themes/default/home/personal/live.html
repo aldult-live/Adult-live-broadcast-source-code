@@ -1,0 +1,96 @@
+<include file="public@head"/>
+<title>我的直播记录</title>
+</head>
+<body style="background-color:#f3f3f3">
+<include file="public@header"/>
+<include file="personal:header"/>
+<div class="buyvip" id="buyvip"></div>
+<div class="dds-dialog-bg" id="ds-dialog-bg"></div>
+<div class="container">
+	<div class="Firstfloor clearfix">
+		<div class="Leftlayout">
+			<include file="personal:navigation"/>
+		</div>
+		<div class="rightlayout">
+			<div class="clearfix">
+				<div class="shouyez">
+					<h3 class="personal_h3">
+						<i class="h3_one"></i>
+						我的直播记录
+						<span>
+						 {$configpub['name_coin']}:{$coin}
+						 <a class="icon"></a>
+						</span>
+						<a class="buy-coins" href="/home/Payment/index">充值<a>
+						<a class="buy-coins" onclick="Personal.played({$uid})">回放<a>
+						<div class="linexi"></div>
+					</h3>
+				</div>
+			</div>
+			<div class="schedule">
+				<div class="charge_mt">
+				<h4>我的直播记录</h4>
+				 <form action="/home/Personal/live" method="post">
+				  查询时间：
+                    <input class="form-control js-date" name="start_time" id="start_time" value="{:input('request.start_time')}" aria-invalid="false" style="width: 110px;"> - 
+                    <input class="form-control js-date" name="end_time" id="end_time" value="{:input('request.end_time')}" aria-invalid="false" style="width: 110px;">
+            
+					<button type="submit" value="搜索">搜索</button>
+				</form> 
+				</div>
+				<div class="charge_table">
+					<table>
+					 <tbody>
+						<tr>
+                            <th width="20%">开播时间</th>
+							<th width="15%">结束时间</th>
+							<th width="15%">房间人数</th>
+							<th width="20%">直播标题</th>
+							<th width="20%">房间类型</th>
+                            <th width="10%">直播类型</th>
+						</tr>
+						<foreach name="lists" item="vo">
+                        <tr>
+                            <td width="20%">{$vo['starttime']}</td>
+                            <td width="15%">{$vo['endtime']}</td>
+                            <td width="15%">{$vo['nums']}</td>
+                            <td width="20%">
+                            	<div style="width: 190px;table-layout:fixed;word-wrap:break-word;">{$vo['title']}</div>
+                            </td>
+                            <td width="20%">{$vo['live_type_name']}</td>
+                            <td width="10%">{$vo['type_s']}</td>
+                        </tr>						
+						</foreach>
+						</tbody>						
+					</table>
+                    <div class="page">
+					
+                    </div>		    	   					
+				</div>
+			</div>
+				{$page}
+		</div>
+  </div>
+</div>
+<include file="public@footer"/>
+<include file="personal:footer"/>
+
+<script src="__STATIC__/xigua/xgplayer.js?t=1574906138" type="text/javascript"></script>
+<script src="__STATIC__/xigua/backups/xgplayer-flv.js.js" type="text/javascript"></script>
+<script src="__STATIC__/xigua/backups/xgplayer-hls.js.js" type="text/javascript"></script>
+<script src="__STATIC__/xigua/backups/player.js?t=1585644520" type="text/javascript"></script>
+
+<script type="text/javascript" src="__STATIC__/home/js/playback.js?t=1578709750"></script>
+<script>
+(function(){
+    //日期选择器
+    var dateInput = $("input.js-date");
+    if (dateInput.length) {
+        Wind.use('datePicker', function () {
+            dateInput.datePicker();
+        });
+    }
+})()
+</script>
+</body>
+</html>

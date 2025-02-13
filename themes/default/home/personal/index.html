@@ -1,0 +1,64 @@
+<include file="public@head"/>
+<title>{$site_name}</title>
+</head>
+<body style="background-color:#f3f3f3">
+<include file="public@header"/>
+<include file="personal:header"/>
+<div class="container">
+	<div class="Firstfloor clearfix">
+		<div class="Leftlayout">
+            <include file="personal:navigation"/>
+		</div>
+		<div class="rightlayout">
+			<div class="clearfix">
+				<div class="shouyez">
+					<h3 class="personal_h3">
+						<i class="h3_one"></i>
+						我的账户资产
+					</h3>
+					<div>
+						<ul>
+							<li style="border-left:0 none" class="one">
+								<i></i>
+								<div>
+									<span>{$configpub['name_coin']}</span>
+									<if condition="$info['coin'] eq ''">
+											<span>0</span>
+									<else/>
+											<span>{$info['coin']}</span>
+									</if>
+									<a href="/home/Payment/index">充值</a>
+								</div>
+							</li>
+							<li class="two">
+								<i></i>
+								<div>
+									<span><a target="_blank">赠送礼物</a>/<a target="_blank">收到礼物</a></span>
+									<span>
+										<b target="_blank" title="0个">{$getgif['tsc']}</b>个/
+										<b target="_blank"title="0个">{$getgif['tsd']}</b>个
+									</span>
+								</div>
+							</li>
+							<li class="three">
+								<a><i></i></a>
+								<div>
+									<span><a target="_blank">我的等级</a>/<a target="_blank">累计经验</a></span>
+									<span>
+										<b target="_blank">{$info['level']}</b>级/
+										<b target="_blank">{$info['consumption']}</b>点
+									</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="shouyey"></div>
+			</div>
+		</div>
+  </div>
+</div>
+<include file="public@footer"/>
+<include file="personal:footer"/>
+</body>
+</html>

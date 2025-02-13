@@ -1,0 +1,27 @@
+<include file="public@head"/>
+<title>{$configpub['site_name']}</title>
+<link type="text/css" rel="stylesheet" href="__STATIC__/home/css/programe.css"/>
+</head>
+<body>
+<div class="wrapper">
+    <include file="public@header"/>
+</div>
+
+<div class="content">
+    <div class="div-img">
+        <div class="qr-code">
+            <div class="qr-img"><img src="{:get_upload_path($configpub['qr_url'])}" style="width:90%;height:auto;margin-left:5%;margin-top:5%;" ></div>
+            <div class="qr-right">
+                <p class="qr-p1">扫描二维码下载</p>
+                <p class="qr-p2">下载IOS/Android</p>
+                <p class="qr-p2">演示APP</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<include file="public@footer"/>
+<include file="public@scripts"/>
+
+</body>
+</html>

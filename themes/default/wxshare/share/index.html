@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <include file="wxshare@head"/>
+    <title>{$configpub['site_name']}</title>
+	<link rel="stylesheet" href="__STATIC__/wxshare/css/lives.css">
+
+</head>
+<body class="body">
+
+	<div class="lstop">
+		<ul class="clear">
+			<li 
+				onclick="location.href='{:url('wxshare/Share/index',['ltype'=>2])}'"
+				<if condition="$ltype eq 2">
+				class="on"
+				</if>
+			>关注<span></span></li>
+			<li 
+				onclick="location.href='{:url('wxshare/Share/index',['ltype'=>1])}'" 
+				<if condition="$ltype eq 1">
+				class="on"
+				</if>
+			>热门<span></span></li>
+			<li 
+				onclick="location.href='{:url('wxshare/Share/index',['ltype'=>3])}'"
+				<if condition="$ltype eq 3">
+				class="on"
+				</if>
+			>最新<span></span></li>
+
+		</ul>
+		<div class="search"
+			onclick="location.href='{:url('wxshare/Share/search')}'"
+		><img src="__STATIC__/wxshare/images/index/sousuo.png">请输入用户ID/用户名...</div>
+	</div>
+	
+	<div class="swiper-container rotation">
+        <div class="swiper-wrapper">
+			<volist name="slide" id="v">
+            <div class="swiper-slide rotation_img"><a <if condition="$v['url']!=''"> href="{$v['url']}" </if>><img src="{$v['image']}" ></a></div>
+			</volist>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+	
+	
+	<ul class="live_ls clear">
+		<volist name="list" id="v">
+			<li class="lists" onclick="openlive({$v['uid']})">
+				<img src="{$v['thumb']}" onerror="this.src='/default.jpg'" class="icon-big" />
+				<div class="h-info">
+					<div class="rom_icon"><img src="__STATIC__/wxshare/images/index/liverom_{$v['type']}.png" /></div>
+					<ul class="u_info">
+						<li><img src="{$v['avatar_thumb']}" onerror="this.src='/default.jpg'" class="uavatar" /></li>
+						<li class="fans">{$v['user_nickname']}</li>
+						<li class="live-icon"><img src="__STATIC__/wxshare/images/index/rs.png"  /></li>
+						<li class="fans_rs">{$v['nums']}</li>
+					</ul>
+				</div>
+			</li>
+		</volist>
+		<li class="hide"></li>
+	</ul>
+	<div style="height:1rem"></div>
+	<div class="footer">
+		<div class="fli" onclick="location.href='{:url('wxshare/Share/index',['ltype'=>1])}'">
+			<div class="icon"><img src="__STATIC__/wxshare/images/index/index2.png"  /></div>
+			<div class="tit on">首页</div>
+		</div>
+		
+		<div class="fli"  onclick="location.href='{:url('wxshare/user/index')}'">
+			<div class="icon"><img src="__STATIC__/wxshare/images/index/my2.png"  /></div>
+			<div class="tit">我的</div>
+		</div>
+	</div>
+	
+	<include file="wxshare@footer"/>
+	
+	<script>
+    var ltype="{$ltype}";
+	var swiper = new Swiper('.swiper-container', {
+		keyboard : true,
+		virtualTranslate : true,
+		on:{
+			setTranslate: function(){
+				this.$wrapperEl.transition('')
+				TweenMax.to(this.$wrapperEl, 1.5, {x:this.translate, ease:Power4.easeOut})
+				
+			}
+		},
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+    });
+
+	
+	function getlistmore(){
+		$.ajax({
+			url:'/wxshare/Share/live_more',
+			data:{'page':page,'ltype':ltype},
+			type:'post',
+			dataType:'json',
+			success:function(data){
+				if(data.nums>0){
+						var nums=data.nums;
+						var list=data.data;
+						var html='';
+						for(var i=0;i<nums;i++){
+
+							var linfo=list[i];
+
+							html+='<li class="lists" onclick="openlive('+linfo['uid']+')">\
+									<img src="'+linfo['thumb']+'"  class="icon-big" />\
+									<div class="h-info">\
+										<div class="rom_icon"><img src="__STATIC__/wxshare/images/index/liverom_'+linfo['type']+'.png" /></div>\
+										<ul class="u_info">\
+											<li><img src="'+linfo['avatar_thumb']+'"  class="uavatar" /></li>\
+											<li class="fans">'+linfo['user_nickname']+'</li>\
+											<li class="live-icon"><img src="__STATIC__/wxshare/images/index/rs.png"  /></li>\
+											<li class="fans_rs">'+linfo['nums']+'</li>\
+										</ul>\
+									</div>\
+								</li>';
+						}
+					
+					$(".live_ls").append(html);
+				}
+				
+				if(data.isscroll==1){
+					page++;
+					isscroll=true;
+				}
+			}
+		})
+	}
+
+	var page=2; 
+	var isscroll=true; 
+	$(window).scroll(function(){  
+			var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)  		
+			var totalheight = parseFloat($(window).height()) + parseFloat(srollPos);  
+			
+			if(($(document).height()-50) <= totalheight  && isscroll) {  
+					isscroll=false;
+					getlistmore()
+			}  
+			
+			
+	});  
+	
+	function openlive(uid){
+
+		location.href='/wxshare/share/show.html?roomnum='+uid;
+	}
+
+	</script>	
+
+
+</body>
+</html> 

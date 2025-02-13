@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$page.post_title}</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="referrer" content="origin">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta content="telephone=no" name="format-detection" />
+<!-- Set render engine for 360 browser -->
+<meta name="renderer" content="webkit">
+
+<!-- No Baidu Siteapp-->
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<link href="__STATIC__/appapi/css/page.css" rel="stylesheet">
+</head>
+
+<body class="body-white">
+	<if condition="$ish5 eq 1">
+	<div class="ret">
+		<a class="ricon" href="javascript:history.back(-1)"><img src="__STATIC__/wxshare/images/return_h.png"></a>
+		<div class="tit">{$page.post_title}</div>
+	</div>
+	</if>
+	<div class="container tc-main">	
+	   <div class="page_content">
+		     {$page.post_content}
+		 </div>
+		
+	</div>
+	<!-- /container -->
+</body>
+</html>

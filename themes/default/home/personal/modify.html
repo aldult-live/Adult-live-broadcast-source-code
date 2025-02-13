@@ -1,0 +1,69 @@
+<include file="public@head"/>
+<title>{$site_name}</title>
+</head>
+<body style="background-color:#f3f3f3">
+<include file="public@header"/>
+<include file="personal:header"/>
+<div class="container">
+  <div class="Firstfloor clearfix">
+		<div class="Leftlayout">
+            <include file="personal:navigation"/>
+		</div>
+		<div class="rightlayout">
+			<div class="jiben">
+				<h3>基本资料</h3>
+				<div id="fpost"  method="post">
+					<div>
+						<label class="label">昵称：</label>
+            <div>
+                <input class="jiebankuang" type="text" name="nickName" id="nickName" placeholder="用户昵称" value="{$info['user_nickname']}">
+             </div>
+					</div>
+					<div>
+            <label class="label">性别：</label>
+            <div class="ctr">
+                <label class="radio">
+                  <input type="radio" class="xingbie" name="gender" value="1" <?php if($info['sex'] == "1") echo "checked=checked;"?>>
+                    男
+                </label>
+                <label class="radio">
+                  <input type="radio" class="xingbie" name="gender" value="2" <?php if($info['sex'] == "2") echo "checked=checked;"?>>
+                    女
+                </label>
+							
+            </div>
+					</div>
+					<div class="form-ctr">
+						<label class="label">签名：</label>
+						<input class="jiebankuangd" type="text" id="signature" name="signature" placeholder="签名" value="{$info['signature']}">
+					</div>
+					<div class="form-ctr">
+					<label class="label">生日：</label>
+                    
+                     <input class="js-date jiebankuangd" name="birthday" id="birthday" value="{$info['birthday']}" aria-invalid="false" style="width: 110px;">
+					</div>	
+					<div class="form-ctr UC-mt">
+            <div class="ctr">
+                <a class="baocunj" onclick="Personal.baocunj()">保存</a>
+            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
+<include file="public@footer"/>
+<include file="personal:footer"/>
+<script>
+(function(){
+    //日期选择器
+    var dateInput = $("input.js-date");
+    if (dateInput.length) {
+        Wind.use('datePicker', function () {
+            dateInput.datePicker();
+        });
+    }
+})()
+</script>
+</body>
+</html>

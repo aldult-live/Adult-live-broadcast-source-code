@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <include file="appapi@head"/>
+	<link type="text/css" rel="stylesheet" href="__STATIC__/appapi/css/family.css?t=1561712924"/>
+	<style type="text/css">
+		.attended{
+			background: url("__STATIC__/appapi/images/family/family_top_bg.jpg") no-repeat left top;
+		}
+		.user-list-fillet{
+			background: #FFF;
+		}
+		.user-list{
+			width: 100%;
+			margin-top: -0.1rem;
+			border-radius: 0;
+		}
+		.user-list ul li{
+			padding: 15px 0 15px 75px;
+			border-bottom: 0;
+		}
+		.user-list-fillet ul li .thumb{
+			width: 60px;
+			height: 60px;
+			left: 5px;
+		}
+		.attended .user-list ul li .action{
+			top: 34px;
+		}
+	</style>
+    <title>我的家族</title>
+</head>
+<body class="attended">
+	<!-- <div class="search">
+		<div class="search_input">
+			<input id="key" placeholder="搜索签约家族ID/名称">
+			<span class="search_clear"></span>
+		</div>
+		<div class="search_btn">
+			搜索
+		</div>
+	</div> 
+	<div class="line10"></div>
+	-->
+	<div class="attended_top">
+		
+	</div>
+	<div class="list_title">
+		家族推荐
+		<div class="reload"></div>
+	</div>
+	<div class="user-list user-list-fillet">
+		<ul>
+			<volist name='list' id='vo' key='k'>
+			<li>
+				<a href="/appapi/Family/detail?familyid={$vo['id']}&uid={$uid}&token={$token}">
+					<div class="thumb">
+						<img src="{$vo['badge']}">
+					</div>
+					<div class="info">
+						<p class="info-title">{$vo['name']}</p>
+						<p class="info-des2 ellipsis">{$vo['briefing']}</p>
+						<p class="info-des2"><span>成员：{$vo['count']}人</span><span>ID：{$vo['id']}</span></p>
+					</div>
+					<div class="action">
+						<span class="ok" data-familyid="{$vo['id']}">加入</span>
+					</div>
+				</a>
+			</li>
+			</volist>
+		</ul>
+	</div>
+    
+	<include file="appapi@footer"/>
+	<script src="__STATIC__/appapi/js/family.js?t=1617867680"></script>
+		
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <include file="wxshare@head"/>
+    <title>实名认证</title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/wxshare/css/auth.css">
+</head>
+<body>
+	<div class="ret">
+		<a class="ricon" href="{:url('wxshare/user/index')}"><img src="__STATIC__/wxshare/images/return_b.png"></a>
+		<div class="tit">实名认证</div>
+	</div>
+	
+    <div class="auth_top">*以下信息均为必填项，为保障您的利益，请如实填写</div>
+	
+	<div class="auth_inp">
+		<div class="auth_tit"><img src="__STATIC__/wxshare/images/auth/quan.png">基本信息</div>
+		<ul class="auth_list">
+			<li>
+				<p class="auth_list_title">真实姓名</p>
+				<p class="auth_list_right">
+					<input type="text" name="realname" id="realname" placeholder="请输入姓名" value="{$info['real_name']|default=''}">
+				</p>
+				<p class="clearboth"></p>
+			</li>
+			<li>
+				<p class="auth_list_title">手机号码</p>
+				<p class="auth_list_right">
+					<input type="text" name="phone" id="phone" placeholder="请输入手机号码" value="{$info['mobile']|default=''}">
+				</p>
+				<p class="clearboth"></p>
+			</li>
+			<li>
+				<p class="auth_list_title">身份证号</p>
+				<p class="auth_list_right">
+					<input type="text" name="cardno" id="cardno" placeholder="请输入身份证号码" value="{$info['cer_no']|default=''}">
+				</p>
+				<p class="clearboth"></p>
+			</li>
+		</ul>
+	
+	</div>
+	
+	
+    <div class="line_bd_u">
+		<div class="auth_tit"><img src="__STATIC__/wxshare/images/auth/quan.png">上传身份信息</div>
+        <ul class="upload clearfix">
+            <li>
+                <div class="up_img" data-fileid="up_img2">
+                    <if condition="$info">
+						<img src="{:get_upload_path($info['front_view1'])}" id="front_view1">
+                    <else/>
+						<img src="__STATIC__/wxshare/images/auth/auth_z.png">
+                    </if>
+                    <div class="shadd">
+                        <div class="progress_bd"><div class="progress_sp"></div></div>
+                    </div>
+                    <input type="hidden" class="img_input" name="front" id="front" value="{$info['front_view']|default=''}">
+                    <input type="file" id="up_img2" class="file_input" name="file"  accept="image/*" style="display:none;"/>
+                </div>
+                <div class="up_t">
+                    {:lang('证件正面')}
+                </div>
+            </li>
+            <li>
+                <div class="up_img" data-fileid="up_img3">
+                    <if condition="$info">
+                    <img src="{:get_upload_path($info['back_view1'])}">
+                    <else/>
+                    <img src="__STATIC__/wxshare/images/auth/auth_f.png">
+                    </if>
+                    <div class="shadd">
+                        <div class="progress_bd"><div class="progress_sp"></div></div>
+                    </div>
+                    <input type="hidden" class="img_input" name="back" id="back" value="{$info['back_view']|default=''}">
+                    <input type="file" id="up_img3" class="file_input" name="file"  accept="image/*" style="display:none;"/>
+                </div>
+                <div class="up_t">
+                    {:lang('证件反面')}
+                </div>
+            </li>
+            <li>
+                <div class="up_img" data-fileid="up_img4">
+                    <if condition="$info">
+                    <img src="{:get_upload_path($info['handset_view1'])}">
+                    <else/>
+                    <img src="__STATIC__/wxshare/images/auth/auth_sc.png">
+                    </if>
+                    <div class="shadd">
+                        <div class="progress_bd"><div class="progress_sp"></div></div>
+                    </div>
+                    <input type="hidden" class="img_input" name="hand" id="hand" value="{$info['handset_view']|default=''}">
+                    <input type="file" id="up_img4" class="file_input" name="file"  accept="image/*" style="display:none;"/>
+                </div>
+                <div class="up_t">
+                    {:lang('手持证件正面照')}
+                </div>
+            </li>
+        </ul>
+		<if condition="$info">
+			<if condition="$info['status'] eq 0">
+			<div class="autharea ">
+				信息审核中
+			</div>
+			<elseif condition="$info['status'] eq 2"/>
+				<div class="autharea auth_ok">认证失败，重新提交</div>
+			</if>
+		<else/>
+			<div class="autharea auth_ok">
+				提交认证
+			</div>
+		</if>
+    </div>
+
+    
+    
+    <include file="wxshare@footer"/>
+    <script type="text/javascript">
+        var status='{$info['status']|default=''}';
+		var protocol='{$protocol}';
+		var domain="{$domain}";
+		var upload_url="{$upload_url}";
+
+		var qiniu_expedite_url=protocol+'://'+domain+'/';
+		var qiniu_upload_url=protocol+'://'+upload_url+'/';	   
+    </script>
+    <script src="__STATIC__/js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="__STATIC__/wxshare/js/auth.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+
+<include file="public@head"/>
+<title>{$configpub.site_seo_title|default=$site_name}</title>
+<meta name="keywords" content="{$configpub.site_seo_keywords}"/>
+<meta name="description" content="{$configpub.site_seo_description}"/>
+<link type="text/css" rel="stylesheet" href="__STATIC__/js/swiper/swiper.min.css"/>
+<link type="text/css" rel="stylesheet" href="__STATIC__/home/css/index.css"/>
+</head>
+<body>
+<div class="wrapper">
+    <include file="public@header"/>
+	<div class="top_line"></div>
+	<div class="index_live">
+		<div style="height: 20px;"></div>
+		<div class="index_live_area">
+			<div class="index_live_area_left">
+				<div id="video_bd" style="width: 100%; height: 590px;">
+                    <div id="video_play"></div>
+                </div>
+				<div class="video_mask">
+					<a href="/" target="_blank">
+						<div class="video_mask_center">
+							<p><img src="__STATIC__/home/images/index/enter_room.png"></p>
+							<p>进入直播间</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="index_live_area_right">
+				<ul>
+					<volist name="indexLive" id="vo">
+						<li data-pull="{$vo['pull']}" data-uid="{$vo['uid']}" ><img src="{:get_upload_path($vo['thumb'])}"></li>
+					</volist>
+				</ul>
+			</div>
+			<div class="clearboth"></div>
+		</div>
+
+		<div class="scroll_top">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <volist name='slide' id='vo'>
+                    <div class="swiper-slide">
+                        <a target="_blank" href="{$vo.url}">
+                            <img src="{$vo.image}">
+                        </a>
+                    </div>
+                    </volist>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>       	
+    	</div>	
+	</div>
+    	
+	
+	
+	<div id="doc-bd">
+		<div class="container clearfix">
+			<div class="main_top_pic"><img src="__STATIC__/home/images/index/main_top.png"></div>
+			<div class="main clearfix">
+
+				<div id="focuspic" class="focuspic feed-list">
+					<ul class="list">
+						<volist name="recommend" id="v">
+
+							 <li class="normal  feed <if condition="$i eq '1'"> mar_left0</if>" >
+							 	<p class="normal_title">{$v['user_nickname']}</p>
+								<a class="link clearfix" target="_blank" href="/{$v['uid']}">
+									<img class="screenshot thumb" src="__STATIC__/home/images/lazyload.png" data-original="{:get_upload_path($v['thumb'])}"/>
+								</a>
+							</li>
+
+						</volist>
+					</ul>
+				</div>
+				<div class="gray_line"></div>
+				<!-- 热门直播 -->
+				<div class="g-box feed-list" id="hot">
+					<div class="box-hd">
+						<h2 class="box-title"><span class="icon"><img src="__STATIC__/home/images/index/remen.png"></span>热门直播</h2>
+					<!-- 	<a class="box-more" href="/category/1">查看更多 &gt;&gt;</a> -->
+					</div>
+					<div class="box-bd">
+						<ul class="list">
+						  <volist name="hot" id="v">
+							<li class="feed <if condition="$v['islive'] eq '1'">live<else/></if> "><a class="link" href="/{$v['uid']}" target="_blank"><img class="screenshot thumb" src="__STATIC__/home/images/lazyload.png" data-original="{:get_upload_path($v['thumb'])}"/>
+							<div class="user">
+								<div class="user_left fl"><img class="avatar thumb" src="__STATIC__/home/images/lazyload.png" data-original="{:get_upload_path($v['avatar'])}"/></div>
+								<div class="user_right fl">
+									<p class="username">{$v['user_nickname']}</p>
+									<p class="bottom">
+										<span class="type">{$v['signature']}</span>
+										<span class="nums">{$v['nums']}</span>
+									</p>
+								</div>
+								
+							</div>
+							
+							</a></li>
+							</volist>
+							
+						</ul>
+					</div>
+				</div>
+				<div class="gray_line"></div>				
+				<!-- 最新直播 -->
+				<div class="g-box feed-list" id="living">
+					<div class="box-hd">
+						<h2 class="box-title"><span class="icon"><img src="__STATIC__/home/images/index/zuixin.png"></span>最新直播</h2>
+					</div>
+					<div class="box-bd">
+						<ul class="list">
+						  <volist name="live" id="v">
+
+							<li class="feed <if condition="$v['islive'] eq '1'">live<else/></if>"><a class="link" href="/{$v['uid']}" target="_blank"><img class="screenshot thumb" src="__STATIC__/home/images/lazyload.png" data-original="{:get_upload_path($v['thumb'])}"/>
+							<div class="user">
+								<div class="user_left fl"><img class="avatar thumb" src="__STATIC__/home/images/lazyload.png" data-original="{:get_upload_path($v['avatar'])}"/></div>
+								<div class="user_right fl">
+									<p class="username">{$v['user_nickname']}</p>
+									<p class="bottom">
+										<span class="type">{$v['signature']}</span>
+										<span class="nums">{$v['nums']}</span>
+									</p>
+								</div>
+								
+							</div>
+							
+							</a></li>
+							</volist>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+<include file="public@footer"/>
+<include file="public@scripts"/>
+
+<div class="fix_area">
+	<div class="fix_area_left fl">
+		<div class="fix_area_left_con">
+			<p>扫一扫</p>
+			<p>手机看直播</p>
+			<p class="ewm_img"><img src="{:get_upload_path($configpub['apk_ewm'])}"></p>
+			<p class="app_ewm_name">Android APP</p>
+		</div>
+	</div>
+	<div class="fix_area_right fl">
+		<p class="app_type_icon app_type_android mar_top75">
+			<img src="__STATIC__/home/images/index/az.png">
+		</p>
+		<p class="app_type_icon app_type_apple">
+			<img src="__STATIC__/home/images/index/pg1.png">
+		</p>
+		<p class="go_top">
+			<img src="__STATIC__/home/images/index/zhiding.png">
+		</p>
+	</div>
+	<div class="clearboth"></div>
+</div>
+
+</div>
+<script type="text/javascript" src="__STATIC__/js/swiper/swiper.min.js"></script>  
+
+
+<script>
+$(function(){
+	//图片延迟加载
+	$("img.thumb").lazyload({effect: "fadeIn"});	
+
+    var swiper = new Swiper('.swiper-container', {
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        autoplay: {
+            delay: 3000,
+            stopOnLastSlide: false,
+            disableOnInteraction: true,
+        },
+        loop : true
+    });
+})
+
+
+function check() {
+	var userAgentInfo=navigator.userAgent;
+	var Agents =new Array("Android","iPhone","SymbianOS","Windows Phone","iPad","iPod");
+	var flag=true;
+	for(var v=0;v<Agents.length;v++) {
+		if(userAgentInfo.indexOf(Agents[v])>0) {
+			flag=false;
+			break;
+		}
+	}
+	return flag;
+}
+if(!check()){
+	window.location.href="/wxshare/share/index";
+}
+	
+</script>
+
+<!-- 视频播放start -->
+<script src="__STATIC__/xigua/xgplayer.js?t=1574906138" type="text/javascript"></script>
+<script src="__STATIC__/xigua/backups/xgplayer-flv.js.js" type="text/javascript"></script>
+<script src="__STATIC__/xigua/backups/xgplayer-hls.js.js" type="text/javascript"></script>
+<script src="__STATIC__/xigua/backups/player.js?t=1585644578" type="text/javascript"></script>
+
+<!-- 视频播放end -->
+<script type="text/javascript">
+	$(function(){
+		$(".index_live_area_right ul li").click(function(){
+			if($(this).hasClass("on")){
+				return;
+			}
+			$(this).siblings().removeClass("on");
+			$(this).addClass("on");
+            
+			var pull=$(this).attr("data-pull");
+            
+			$(".video_mask a").attr("href","/"+$(this).attr("data-uid"));
+			xgPlay('video_play',pull);
+		});
+        
+        var firstLive=$(".index_live_area_right ul li")[0];
+        if(firstLive){
+            firstLive.click();
+        }
+
+		$(".index_live_area_left").mouseover(function() {
+			$(".video_mask").show();
+		});
+		$(".index_live_area_left").mouseleave(function() {
+			$(".video_mask").hide();
+		});
+
+
+		var apk_ewm='{:get_upload_path($configpub['apk_ewm'])}';
+		var ios_ewm='{:get_upload_path($configpub['ipa_ewm'])}';
+
+		$(".app_type_apple").mouseover(function(){
+			$(this).find('img').attr("src","__STATIC__/home/images/index/pg.png");
+			$(".app_type_android").find('img').attr("src","__STATIC__/home/images/index/az1.png");
+			$(".ewm_img").find("img").attr("src",ios_ewm);
+			$(".app_ewm_name").text("iOS App");
+		});
+			
+		
+
+		$(".app_type_apple").mouseleave(function(){
+			$(this).find('img').attr("src","__STATIC__/home/images/index/pg1.png");
+			$(".app_type_android").find('img').attr("src","__STATIC__/home/images/index/az.png");
+			$(".ewm_img").find("img").attr("src",apk_ewm);
+			$(".app_ewm_name").text("Android App");
+		});
+
+		$(".go_top").mouseover(function() {
+			$(this).find("img").attr("src",'__STATIC__/home/images/index/zhiding1.png');
+		});
+		$(".go_top").mouseleave(function() {
+			$(this).find("img").attr("src",'__STATIC__/home/images/index/zhiding.png');
+		});
+		
+		$(".go_top").click(function(){
+			document.body.scrollTop = 0;
+    		document.documentElement.scrollTop = 0;
+		});
+	});
+</script>
+</body>
+</html>

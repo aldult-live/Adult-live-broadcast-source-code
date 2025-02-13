@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <include file="wxshare@head"/>
+    <title>钱包</title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/wxshare/css/payment.css">
+</head>
+<body class="index">
+	<div class="ret">
+		<a class="ricon" href="{:url('wxshare/user/index')}"><img src="__STATIC__/wxshare/images/return_b.png"></a>
+		<div class="tit">钱包</div>
+	</div>
+	<div class="ptop">
+		<div class="tit">我的{$configpub['name_coin']}</div>
+		<div class="coin">{$user['coin']}</div>
+	</div>
+	
+	<div class="lists">
+		<div class="msg">
+			<div class="tit">请选择充值金额</div>
+			<div class="tip"><img src="__STATIC__/wxshare/images/payment/th.png">未成年人禁止充值消费</div>
+		</div>
+		<ul class="clist clear">
+		<volist name="lists" id="vo">
+			<li data-rulesid="{$vo['id']}">
+				<div class="ccoin">{$vo['coin']}<img src="__STATIC__/wxshare/images/coin.png"></div>
+				<div class="money">￥{$vo['money']}</div>
+				<if condition="$vo['give'] gt 0">
+				<div class="mark">赠送{$vo['give']}{$configpub['name_coin']}</div>
+				</if>
+			</li>
+		</volist>
+			<li class="hide"></li>
+		</ul>
+		
+		<div class="msg">
+			<div class="tit">请选择支付方式</div>
+		</div>
+		<ul class="plist">
+			<if condition="$configpri['alih5_switch'] eq 1">
+			<li><label>
+				<img src="__STATIC__/app/pay/ali.png">支付宝支付
+				<input class="paytype" type="radio" name="paytype" value='ali'>
+				</label>
+			</li>
+			</if>
+			<if condition="$configpri['wxh5_switch'] eq 1">
+			<li><label>
+				<img src="__STATIC__/app/pay/wx.png">微信H5支付
+				<input class="paytype" type="radio" name="paytype" value='wxh5'>
+			</label></li>
+			</if>
+			<if condition="$configpri['wxgzh_switch'] eq 1">
+			<li><label>
+				<img src="__STATIC__/app/pay/wx.png">微信公众号支付
+				<input class="paytype" type="radio" name="paytype" value='wx'>
+			</label></li>
+			</if>
+			
+		</ul>
+		
+		<div class="gopay">确认支付</div>
+		<div class="paytip">已阅读并同意<a href="/portal/page/index?id=6&ish5=1">《用户充值协议》</a></div>
+	</div>
+
+    <include file="wxshare@footer"/>
+	<script>
+
+		var rulesid=0;
+		var issub=0;
+
+		$(".clist li").on("click",function(){
+			$(this).siblings().removeClass("on");
+			$(this).addClass("on");
+			rulesid=$(this).data("rulesid");
+
+		});
+		
+		$(".plist li").on("click",function(){
+			$(this).siblings().removeClass("on");
+			$(this).addClass("on");
+		});
+	
+	
+		$(".gopay").on("click",function(){
+			if(issub==1){
+				return;
+			}
+			
+			var changeid=rulesid;
+			if(!changeid){
+				layer.msg('请选择充值规则');
+				return false;
+			}
+			var type=$('input[name="paytype"]:checked').val();
+
+
+			if(!type){
+				layer.msg('请选择支付方式');
+				return false;
+			}
+			issub=1
+			
+			//生成订单号
+			$.ajax({
+				url:'/wxshare/payment/getOrderId',
+				data:{chargeid:rulesid,paytype: type},
+				type:'post',
+				dataType:'json',
+				success:function(data){
+					issub=0;
+					if(data.code==0){
+						
+						if(type=='ali'){
+						
+							window.location.href='/wxshare/payment/alipay?orderno='+data['data']['orderid'];
+						}else if(type=='wx'){
+							window.location.href='/wxpay/jsapi-wx.php?uid='+data['data']['uid']+'&money='+data['data']['money']+'&orderid='+data['data']['orderid'];
+						}else if(type=='wxh5'){
+							wxh5(data['data']['orderid']);
+						}
+					}else{
+						layer.msg(data.msg);
+						return;
+					}
+					
+				},
+				error:function(e){
+					console.log(e);
+				}
+				
+			})
+			
+
+		});
+		
+		
+		//微信h5支付
+		function wxh5(orderid){
+			$.ajax({
+				url:'/wxshare/payment/wxh5pay',
+				data:{ orderno:orderid },
+				dataType:'json',
+				success:function(info){
+					if(info.code==0){
+						window.location.href=info['info'][0]['url'];
+					}else{
+						layer.msg(info.msg);
+						return;
+					}
+					
+				},
+				error:function(e){
+					console.log(e);
+				}
+				
+			})
+		}
+		
+
+		
+		
+		
+
+	</script>
+
+</body>
+</html>

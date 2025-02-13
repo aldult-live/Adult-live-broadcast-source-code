@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <include file="appapi@head"/>
+        <title>下载APP</title>
+        <link href='__STATIC__/appapi/css/agent.css?t=1561712926' rel="stylesheet" type="text/css" >
+    </head>
+<body class="downapp_bg">
+    <div class="downapp_logo">
+        <img src="/logo.png">
+    </div>
+    <div class="downapp_name">
+        {$site_name}
+    </div>
+    <div class="downapp_desc">
+        <img src="__STATIC__/appapi/images/agent/downapp_desc.png">
+    </div>
+    <div class="downapp_btn" id="downloadButton">
+        点击下载
+    </div>
+
+<include file="appapi@footer"/>
+<script type="text/javascript" charset="UTF-8" src="https://web.cdn.openinstall.io/openinstall.js"></script>
+<script type="text/javascript">
+
+    //OpenInstall初始化时将与openinstall服务器交互，应尽可能早的调用
+    /*web页面向app传递的json数据(json string/js Object)，应用被拉起或是首次安装时，通过相应的android/ios api可以获取此数据*/
+    var data = OpenInstall.parseUrlParams();///openinstall.js中提供的工具函数，解析url中的所有查询参数
+    new OpenInstall({
+        /*appKey必选参数，openinstall平台为每个应用分配的ID*/
+        appKey : "{$openinstall_appkey}",
+        /*自定义遮罩的html*/
+        //mask:function(){
+        //  return "<div id='_shadow' style='position:fixed;left:0;top:0;background:rgba(0,255,0,0.5);filter:alpha(opacity=50);width:100%;height:100%;z-index:10000;'></div>"
+        //},
+        /*OpenInstall初始化完成的回调函数，可选*/
+        onready : function() {
+            /*在app已安装的情况尝试拉起app*/
+            this.schemeWakeup();
+            
+            /*用户点击某个按钮时(假定按钮id为downloadButton)，安装app*/
+            var m = this, button = document.getElementById("downloadButton");
+            button.onclick = function() {
+                m.wakeupOrInstall();
+                return false;
+            }
+        }
+    }, data);
+</script>
+</body>
+</html>

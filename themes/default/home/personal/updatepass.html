@@ -1,0 +1,43 @@
+<include file="public@head"/>
+<title>{$site_name}</title>
+</head>
+<body style="background-color:#f3f3f3">
+<include file="public@header"/>
+<include file="personal:header"/>
+<div class="container">
+  <div class="Firstfloor clearfix">
+		<div class="Leftlayout">
+			<include file="personal:navigation"/>
+		</div>
+		<div class="rightlayout">
+			<div class="jiben">
+				<h3>修改密码</h3>
+				<div id="fpost"  method="post">
+					<div class="form-ctr">
+						<label class="label">当前密码：</label>
+					
+							<input class="jiebankuangd" type="password" id="oldpass" name="oldpass" placeholder="当前密码" value="">
+						
+					</div>
+					<div class="form-ctr">
+						<label class="label">新密码：</label>
+							<input type="password" name="newpass" id="newpass" class="jiebankuangd" value="" placeholder="新密码" >
+					</div>
+					<div class="form-ctr">
+						<label class="label">确认密码：</label>
+							<input class="jiebankuangd" type="password" id="repass" name="repass" placeholder="确认密码" value="">						
+					</div>
+					<div class="form-ctr UC-mt">
+						<div class="ctr">
+							<a class="baocunj" onclick="Personal.updatepass()">保存</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
+<include file="public@footer"/>
+<include file="personal:footer"/>
+</body>
+</html>

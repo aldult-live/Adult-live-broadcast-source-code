@@ -1,0 +1,128 @@
+<include file="public@head"/>
+<title>充值页面</title>
+<link type="text/css" rel="stylesheet" href="__STATIC__/home/css/payment.css"/>
+</head>
+<body>
+
+<include file="public@header"/>
+
+<div class="wrapper">
+
+
+<div id="doc-bd">
+    <div id="charge-container" class="container clearfix">
+        <div class="side">
+            <ul class="sidebar">
+                <li class="active">
+                    <a href="#">钻石充值</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <ul class="breadcrumb clearfix">
+                <li class="step1 active">
+                    1.确认支付信息
+                </li>
+                <li class="step2">
+                    2.扫码支付
+                </li>
+                <li class="step3">
+                    3.支付成功
+                </li>
+            </ul>
+			<div style="display:block" id="xuanze">
+				<form id="fpost" action="/home/payment/chargepay/" method="post" target="_blank">
+					<input type="hidden" name="changeid" value="{$lists[0]['id']}" id="changeid">
+					<input type="hidden" name="c_PPPayID" value="" id="c_PPPayID">
+					<ul class="chargebox">
+						<li class="step1 active">
+							<div class="row user-info clearfix">
+								<div class="label">
+									当前充值账号：
+								</div>
+								<div class="content clearfix">
+									<a href="#" class="red" target="_blank">
+										<b class="nickname">{$user["user_nickname"]}</b>
+										<b class="uid">({$user["id"]})</b>
+									</a>
+									 <span class="balance-label">您的钻石余额：<b class="red balance">{$user["coin"]}</b></span>
+								 </div>
+							</div>
+							<div class="row charge-select clearfix">
+								<div class="label">
+									充值数量：
+								</div>
+								<div class="content">
+									<ul id="package-list" class="package-list clearfix" >
+										<volist name="lists" id="v">
+										<li class="item <if condition="$i eq 1">active</if>" data-amount="{$v['coin']}" data-price="{$v['money']}" data-id="{$v['id']}">
+											<a data-text="{$v['money']}" href="javascript:void(0);">
+												<b class="amount">{$v['name']} <if condition="$v['give'] gt 0"><span>送{$v['give']}</span></if></b>
+												<b class="price">¥{$v['money']}</b>
+											</a>
+										</li>
+										</volist>
+									</ul>
+								</div>
+							</div>
+							<div class="row charge-cost clearfix">
+								<div class="label">
+									应付金额：
+								</div>
+								<div class="content">
+									<b id="c_Money1" class="cost red">{$lists[0]['money']}</b>元
+								</div>
+							</div>
+							<div class="row charge-source clearfix">
+								<div class="label">
+									支付平台：
+								</div>
+								<div class="content">
+									<ul id="charge-source-list" class="charge-source-list clearfix" bk="">
+									<if condition="$configpri['aliapp_pc'] eq '1'">
+										<li class="item alipay "  data-index="0" data-source="zhifubao" data-title="支付宝">
+											<a href="javascript:void(0);" data-text="支付宝">
+												<img src="__STATIC__/home/images/zhifubao.jpg">
+											</a>
+										</li>
+									</if>
+									<if condition="$configpri['wx_switch_pc'] eq '1'">
+										<li class="item weixin"  data-index="1" data-source="weixin" data-title="微信支付">
+											<a href="javascript:void(0);" data-text="微信支付">
+												<img src="__STATIC__/home/images/weixin.jpg">
+											</a>
+										</li>
+									</if>
+                                    
+                                    
+									</ul>
+								</div>
+							</div>
+							<div class="row charge-submit clearfix">
+								<div class="content">
+									<if condition="$configpri['aliapp_pc'] eq '1' OR $configpri['wx_switch_pc'] eq '1' ">
+										<a class="btn btn-submit" href="javascript:charge_submit();" >立即支付</a>
+									<else/>
+										<a class="btn btn-submit">本网站未开通支付</a>
+									</if>
+									<div class="charge-errormsg ">
+										<img src=""><span class="msg red"></span>
+									</div>
+								</div>
+							</div>
+					   </li>
+					</ul>
+				</form>
+			</div>			
+        </div>
+    </div>
+</div>
+
+</div>
+<include file="public@footer"/>
+<include file="public@scripts"/>
+
+<script type="text/javascript" src="__STATIC__/home/js/payment.js?t=1570610246"></script>
+
+</body>
+</html>

@@ -1,0 +1,271 @@
+
+body {
+	background:#fff;
+}
+.ret{
+	width: 100%;
+    height: 1rem;
+	background-color:#fff;
+    border-bottom: 1px solid #F9F9F9;
+	position: relative;
+}
+.ret .ricon{
+	width:1rem;
+	height:1rem;
+	position: absolute;
+	display: block;
+}
+.ret .ricon>img{
+	width: 0.25rem;
+    position: relative;
+    top: 0.28rem;
+    left: 0.3rem;
+}
+.ret .tit{
+	width: 100%;
+    line-height: 1rem;
+    text-align: center;
+    font-size: 0.38rem;
+    color: #333333;
+}
+.ret .sub{
+	position: absolute;
+    top: 0.26rem;
+    font-size: 0.3rem;
+    right: 0.2rem;
+    width: 1.2rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    background-color: #FC4192;
+    border-radius: 1rem;
+    color: #fff;
+}
+.code_msg{
+	width: 100%;
+	height: 0.6rem;
+    line-height: 0.6rem;
+	text-align: center;
+	color: #979797;
+    font-size: 0.26rem;
+}
+.footer{
+	width: 100%;
+    height: 1.2rem;
+    position: fixed;
+    bottom: 0rem;
+    background-color: #fff;
+    text-align: center;
+}
+.footer>.fli{
+	width:50%;
+	float:left;
+	padding-top: 0.15rem;
+}
+
+.footer>.fli>.icon>img{
+	width:0.5rem;
+}
+.footer>.fli>.tit{
+	color:#828282;
+	height: 0.5rem;
+    line-height: 0.5rem;
+    font-size: 0.3rem;
+}
+.footer>.fli>.on{
+	color:#FF5878;
+}
+
+
+.uinfo{
+	width: 90%;
+    margin: 0 auto;
+    position: relative;
+	margin-top:0.4rem;
+}
+.uinfo .uavatar{
+	width: 2.4rem;
+	height: 2.4rem;
+}
+.uinfo .uavatar>img{
+	width: 100%;
+	height: 100%;
+    border-radius: 5rem;
+}
+.uinfo>.info{
+	position: absolute;
+	top: 0.25rem;
+    left: 2.6rem;
+}
+.uinfo>.info>.uname{
+	font-size: 0.35rem;
+    font-weight: bold;
+}
+.uinfo>.info>.uid{
+	font-size: 0.28rem;
+    color: #9F9F9F;
+    height: 0.6rem;
+    line-height: 0.6rem;
+}
+.uinfo>.info>.ufg>li{
+	float:left;
+	font-size: 0.28rem;
+	color: #9F9F9F;
+}
+
+.uinfo>.info>.ufg>.jiange{
+	width: 0.5rem;
+    text-align: center;
+}
+.uinfo>.info>.ufg>li>span{
+	color: #000;
+}
+.usave{
+	width: 0.8rem;
+    position: absolute;
+    top: 1rem;
+    right: 0px;
+}
+.usave>a>img{
+	width: 100%;
+}
+
+.ucoin{
+	width: 90%;
+    margin: 0 auto;
+    margin-top: 0.4rem;
+}
+.ucoin>.coin_li{
+	width: 38%;
+    background-color: #F1F1F1;
+    padding: 0.2rem 5%;
+    border-radius: 0.2rem;
+	float:left;
+}
+.ucoin>.coin_li>.cl_tit{
+	height: 0.6rem;
+    line-height: 0.6rem;
+    font-size: 0.35rem;
+	font-weight: bold;
+}
+.ucoin>.coin_li>.cl_tit>.cl_tpl{
+	background-color: #FF4F4F;
+    font-size: 0.2rem;
+    padding: 0.04rem 0.1rem;
+    border-radius: 0.1rem;
+    color: #fff;
+    margin-left: 0.1rem;
+	font-weight: 100;
+}
+
+.ucoin>.coin_li>.cl_con{
+	color: #848484;
+    font-size: 0.3rem;
+}
+.ucoin>.coin_li>.cl_con>span{
+	font-size:0.26rem;
+}
+.tlist{
+	width: 90%;
+    margin: 0 auto;
+}
+.tlist>.tit{
+	height: 1rem;
+    line-height: 1rem;
+    font-size: 0.36rem;
+    font-weight: bold;
+    margin-top: 0.1rem;
+	
+}
+
+.tlist>.tlists{
+	position: relative;
+	
+}
+.tlist>.tlists>li{
+	height: 1.2rem;
+    line-height: 1.3rem;
+    border-bottom: 1px solid #EFEFEF;
+}
+.tlist>.tlists>li>div{
+	display: inline-block;
+}
+.tlist>.tlists>li>.icon{
+	width:0.5rem;
+}
+.tlist>.tlists>li>.icon>img{
+	width:100%;
+}
+.tlist>.tlists>li>.tit{
+	font-size: 0.32rem;
+    color: #000;
+    margin-left: 0.2rem;
+	font-weight: bold;
+}
+.tlist>.tlists>li>.return_j{
+	width:0.7rem;
+	position: absolute;
+    right: 0px;
+}
+.tlist>.tlists>li>.return_j>img{
+	width:100%;
+}
+
+.ulists{
+	width: 90%;
+    margin: 0 auto;
+	margin-top:0.1rem;
+}
+.ulists>li{
+	height: 1.2rem;
+    line-height: 1.2rem;
+    border-bottom: 1px solid #EFEFEF;
+	position: relative;
+}
+.ulists>li>.tit{
+	color: #C8C8C8;
+    font-size: 0.32rem;
+}
+.ulists>li>.avatar{
+	width: 1rem;
+	height: 1.2rem;
+    position: absolute;
+    top: 0rem;
+    right: 0.6rem;
+}
+.ulists>li>.avatar>img{
+	width: 100%;
+	height: 1rem;
+	border-radius: 100rem;
+}
+.ulists>li>.return_j{
+	width: 0.5rem;
+    position: absolute;
+    right: 0px;
+    top: 0.05rem;
+}
+.ulists>li>.return_j>img{
+	width:100%;
+}
+.ulists>li>.uname{
+	position: absolute;
+    top: 0.2rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    width: 3.5rem;
+    right: .6rem;
+}
+.ulists>li>.uname>input{
+	width: 100%;
+    height: 100%;
+    text-align: right;
+    border: none;
+    font-size: 0.3rem;
+}
+.ulists>li>select{
+	position: absolute;
+    top: 0.4rem;
+    font-size: 0.3rem;
+    right: 0.6rem;
+    border: none;
+}
