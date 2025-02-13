@@ -62,9 +62,6 @@ git clone https://gitee.com/xhmzb/xiaohongmaozhibo.git  # 七彩主题分支
 
 ---
 
-**项目资源**  
-- GitHub主仓库：[xiaohongmaozhibo](https://github.com/xiaohongmaozhibo2233/xiaohongmaozhibo)  
-- 引流案例库：[小红书创意广告生成指南](https://www.woshipm.com/share/6146416.html)  
 
 *注：运营需遵守《网络直播营销管理办法》，七彩特效设计需避免光敏性风险。*  
 
